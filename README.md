@@ -1,7 +1,3 @@
 # 1800_202430_DTC8
 
-Hello everyone, this is James!
-
-adlwknawdlknadwlkn
-
-Hey my name is Mobina
+Hi, my name is Mobina
