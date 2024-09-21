@@ -1,5 +1,4 @@
 # 1800_202430_DTC8
 
-Hello everyone, this is James!
+Hi, my name is YoungBin! I am excited. thank you!
 
-adlwknawdlknadwlkn askdjalskdgiot 
