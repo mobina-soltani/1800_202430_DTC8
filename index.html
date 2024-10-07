@@ -47,19 +47,19 @@
     <body>
         <header class="flex flex-row justify-between">
             <div class="flex flex-row">
-                <div class="float-left">
+                <div class="">
                     <input
-                        class="rounded-full bg-orange-300"
+                        class="p-2 rounded-full bg-orange-300"
                         type=" text"
                         placeholder="Restaurants ..."
                     />
-                    <button class="button rounded-full bg-orange-300">
-                        <img class="" src="./res/icons8-search-50.png" alt="" />
+                    <button class="w-10 button rounded-full bg-orange-300">
+                        <img class="w-[100%]" src="./res/icons8-search-50.png" alt="" />
                     </button>
                 </div>
             </div>
-            <div id="navbar" class="">
-                <nav class="collapse md:visible">
+            <div id="navbar" class="flex justify-end p-2 ">
+                <nav class="collapse md:visible flex gap-4">
                     <a href="default.asp">Home</a>
                     <a href="contact.asp">Contact</a>
                     <a href="about.asp">About</a>
@@ -67,7 +67,7 @@
 
                 <div id="hamburger">
                     <div
-                        class="visible container md:hidden"
+                        class="visible container md:collapse"
                         onclick="myFunction(this)"
                     >
                         <div class="bar1"></div>
