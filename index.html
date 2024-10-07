@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .container {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .bar1,
+        .bar2,
+        .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        /* Rotate first bar */
+        .change .bar1 {
+            transform: translate(0, 11px) rotate(-45deg);
+        }
+
+        /* Fade out the second bar */
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        /* Rotate last bar */
+        .change .bar3 {
+            transform: translate(0, -11px) rotate(45deg);
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: inline;
+        }
+
+        li {
+            float: right;
+        }
+
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change the link color to #111 (black) on hover */
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <header>
+        <ul class="invisible md:visible">
+            <li><a href="default.asp">Home</a></li>
+            <li><a href="contact.asp">Contact</a></li>
+            <li><a href="about.asp">About</a></li>
+        </ul>
+    </header>
+    <div class="flex justify-between">
+        <div class="flex">
+            <input class="rounded-full bg-orange-300" type=" text" placeholder="Restaurants ..." />
+            <button class="button rounded-full bg-orange-300"><img class="" src="./res/icons8-search-50.png"
+                    alt=""></button>
+        </div>
+        <div>
+            <div class="visible container md:hidden" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <div class="flex">
+        <div>
+            <p>EatMoJi</p>
+            <p>Hungry? <br>Let's find a place &#128523 &#127860 &#127843</p>
+        </div>
+        <div class="flex flex-col">
+            <button class="rounded-full bg-slate-300">Log in</button>
+            <button class="rounded-full bg-slate-300">Sign up</button>
+        </div>
+    </div>
 </body>
+
 </html>
