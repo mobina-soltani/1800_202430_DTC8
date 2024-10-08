@@ -21,8 +21,8 @@
             crossorigin="anonymous"
         ></script>
         <header class="">
-            <nav class="navbar navbar-light bg-light d-flex flex-row">
-                <form class="form-inline d-flex flex-row">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <form class="my-2 my-ly-0">
                     <input
                         class="form-control mr-sm-2"
                         type="search"
@@ -36,17 +36,39 @@
                         Search
                     </button>
                 </form>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <div class="d-flex flex-row w-25 justify-content-evenly">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarSupportedContent"
+                >
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>
 
         <main class="container">
-            <div class="d-flex flex-column flex-sm-row" style="margin-top: 15%;">
+            <div class="d-flex flex-column flex-sm-row" style="margin-top: 15%">
                 <div class="m-auto">
                     <h1 class="display-1 text-center text-sm-start">EatMoJi</h1>
                     <h2 class="text-center text-sm-start">
