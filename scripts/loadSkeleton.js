@@ -2,7 +2,9 @@
 // (i.e. header and footer)
 const loadSkeleton = () => {
     // add logic as you wish
-    $("nav").load("./components/navbar.html");
+    $("head").append()
+
+    $("header").load("./components/header.html");
 
     $("footer").load("./components/footer.html");
 };
