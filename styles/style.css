@@ -1,0 +1,38 @@
+.custom-gray-btn {
+    background-color: #d2d2d2;
+    border-color: #e1e2e2;
+    padding: 0.8rem 3rem;
+}
+.custom-form {
+    color: brown;
+}
+header nav form input {
+    margin: 15px 0 0 15px;
+    border-radius: 70%;
+}
+.searchbox {
+    background-color: #d2d2d2;
+    border-radius: 80px;
+    height: 60px;
+    flex-grow: 1;
+    margin-right: 7px;
+}
+.search-btn {
+    width: 50px;
+    height: 50px;
+    background-color: #d2d2d2;
+    border: none;
+    color: black;
+    justify-content: center;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.search-btn i {
+    font-size: 20px;
+}
+
+nav div a {
+    color: black;
+    text-decoration: none;
+}

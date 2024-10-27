@@ -1,3 +1,9 @@
+# vscode folder
+.vscode
+
+# firebaseAPI
+scripts/firebaseAPI_DTC08.js
+
 # Logs
 logs
 *.log
