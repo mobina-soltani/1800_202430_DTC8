@@ -1,9 +1,21 @@
 const getRestaurants = () => {
     // mock data for restaurants
     return [
-        { name: "Place 1", link: "https://maps.app.goo.gl/dTYojLBTX26SXwDX6", tags: [`🦐`, `🥜`, `💲💲`] },
-        { name: "Place 2", link: "https://maps.app.goo.gl/jwbqWVMVzmfTbJKo9", tags: [`💲`, `🥬`] },
-        { name: "Place 3", link: "https://maps.app.goo.gl/3PmDGDHrGyrHx2w96", tags: [`🤵`, `💵`] },
+        {
+            name: "Place 1",
+            link: "https://maps.app.goo.gl/dTYojLBTX26SXwDX6",
+            tags: [`🦐`, `🥜`, `💲💲`],
+        },
+        {
+            name: "Place 2",
+            link: "https://maps.app.goo.gl/jwbqWVMVzmfTbJKo9",
+            tags: [`💲`, `🥬`],
+        },
+        {
+            name: "Place 3",
+            link: "https://maps.app.goo.gl/3PmDGDHrGyrHx2w96",
+            tags: [`🤵`, `💵`],
+        },
     ];
 };
 
@@ -25,7 +37,10 @@ const modifyRestaurantCard = (data, restaurant, indexInList) => {
     }
 
     // add link to restaurant (idk maybe google or restaurant page)
-    $(`#restaurant-${indexInList}`).attr("onclick", `window.open("${restaurant.link}")`)
+    $(`#restaurant-${indexInList}`).attr(
+        "onclick",
+        `window.open("${restaurant.link}")`
+    );
 };
 
 // Load restaurant cards
