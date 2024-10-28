@@ -36,3 +36,11 @@ nav div a {
     color: black;
     text-decoration: none;
 }
+
+#restaurant-list > div {
+    background-color: skyblue;
+}
+
+#restaurant-list > div:hover {
+    background-color: #198754;
+}
