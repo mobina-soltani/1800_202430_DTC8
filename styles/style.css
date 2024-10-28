@@ -3,13 +3,16 @@
     border-color: #e1e2e2;
     padding: 0.8rem 3rem;
 }
+
 .custom-form {
     color: brown;
 }
+
 header nav form input {
     margin: 15px 0 0 15px;
     border-radius: 70%;
 }
+
 .searchbox {
     background-color: #d2d2d2;
     border-radius: 80px;
@@ -17,6 +20,7 @@ header nav form input {
     flex-grow: 1;
     margin-right: 7px;
 }
+
 .search-btn {
     width: 50px;
     height: 50px;
@@ -35,4 +39,10 @@ header nav form input {
 nav div a {
     color: black;
     text-decoration: none;
+}
+
+
+.custom-img-size {
+    width: 100px;
+    height: 100px;
 }
