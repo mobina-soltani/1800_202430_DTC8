@@ -41,8 +41,10 @@ nav div a {
     text-decoration: none;
 }
 
+#restaurant-list > div {
+    background-color: skyblue;
+}
 
-.custom-img-size {
-    width: 100px;
-    height: 100px;
+#restaurant-list > div:hover {
+    background-color: #198754;
 }
