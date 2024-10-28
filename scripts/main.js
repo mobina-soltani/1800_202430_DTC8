@@ -1,4 +1,5 @@
 const getRestaurants = () => {
+    // mock data for restaurants
     return [
         { name: "Place 1", link: "https://maps.app.goo.gl/dTYojLBTX26SXwDX6", tags: [`🦐`, `🥜`, `💲💲`] },
         { name: "Place 2", link: "https://maps.app.goo.gl/jwbqWVMVzmfTbJKo9", tags: [`💲`, `🥬`] },
