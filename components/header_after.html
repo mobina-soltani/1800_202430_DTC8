@@ -3,34 +3,28 @@
         <a class="p-2" href="#">
             <img src="/icon/eatmoji_icon.svg" alt="Logo">
         </a>
-        <p class="h2 p-2">EatMoJi</p>
+        <p class="h2 p-2 d-none d-md-block">EatMoJi</p>
     </div>
-    <form class="d-flex flex-row my-2 my-md-0 col-8 col-md-6">
+    <form class="d-flex flex-row my-2 my-0 col-8 col-6">
         <input class="form-control mr-2 my-0 searchbox" placeholder="Search" aria-label="Search" type="search" />
         <button class="btn btn-outline-primary search-btn align-self-center">
             <i class="bi bi-search"></i>
         </button>
     </form>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse d-md-flex justify-content-md-end align-items-center"
-        id="navbarSupportedContent">
-        <ul class="navbar-nav h5">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
-            <li class="nav-item">
+    <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarSupportedContent">
+        <div class="dropdown show d-none d-md-block">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="m-2" src="/icon/human.png" alt="">
-            </li>
-        </ul>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+
     </div>
 
 </nav>
