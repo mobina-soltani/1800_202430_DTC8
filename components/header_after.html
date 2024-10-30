@@ -6,35 +6,25 @@
         <p class="h2 p-2 d-none d-md-block">EatMoJi</p>
     </div>
     <form class="d-flex flex-row my-2 my-0 col-8 col-6">
-        <input
-            class="form-control mr-2 my-0 searchbox"
-            placeholder="Search"
-            aria-label="Search"
-            type="search"
-        />
+        <input class="form-control mr-2 my-0 searchbox" placeholder="Search" aria-label="Search" type="search" />
         <button class="btn btn-outline-primary search-btn align-self-center">
             <i class="bi bi-search"></i>
         </button>
     </form>
-    <div
-        class="collapse navbar-collapse d-flex justify-content-end align-items-center"
-        id="navbarSupportedContent"
-    >
+    <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarSupportedContent">
         <div class="dropdown">
-            <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-            >
-            <img src="./icon/human.png" alt="">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="./icon/human.png" alt="">
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" onclick="logout" href="#">Logout</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<script src="/scripts/logout.js"></script>
