@@ -1,35 +1,44 @@
+body {
+background-color: #B7E0FF;
+}
 .custom-gray-btn {
-    background-color: #d2d2d2;
+    background-color: #FFCFB3;
     border-color: #e1e2e2;
     padding: 0.8rem 3rem;
 }
 
+.custom-gray-btn:hover{
+    background-color: #E78F81;
+}
+
+
 .custom-form {
     color: brown;
 }
-
 header nav form input {
     margin: 15px 0 0 15px;
     border-radius: 70%;
 }
-
 .searchbox {
-    background-color: #d2d2d2;
+    background-color: #FFCFB3;
     border-radius: 80px;
     height: 60px;
     flex-grow: 1;
     margin-right: 7px;
 }
-
 .search-btn {
     width: 50px;
     height: 50px;
-    background-color: #d2d2d2;
+    background-color: #FFCFB3;
     border: none;
     color: black;
     justify-content: center;
     border-radius: 50%;
     vertical-align: middle;
+}
+
+.search-btn:hover{
+    background-color: #E78F81;
 }
 
 .search-btn i {
@@ -52,7 +61,10 @@ nav div a {
 
 .account-section {
     padding: 2rem;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
 }
+    
 
 .account-header {
     font-size: 24px;
@@ -73,10 +85,14 @@ nav div a {
     border-radius: 8px;
     transition: box-shadow 0.3s ease;
     font-size: 14px;
+    flex-basis: 300px; /* Ensures cards don’t stretch beyond 300px */
+    padding: 20px; /* Adds space within each card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for card definition */
 }
 
 .account-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 245, 205, 0.5);
 }
 
 .icon {
@@ -84,3 +100,29 @@ nav div a {
     margin-right: 1rem;
 }
 
+footer{
+    background-color: #FFCFB3;
+}
+
+/* Default styling for larger screens */
+.mobile-footer {
+    position: static;
+    width: 100%;
+}
+
+/* Sticky footer styling for mobile screens */
+@media (max-width: 768px) {
+    .mobile-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        border-top: 1px solid #ddd;
+    }
+    
+    /* Adding bottom padding to the main content */
+    .container {
+        padding-bottom: 50px; /* Adjust based on footer height */
+    }
+}
