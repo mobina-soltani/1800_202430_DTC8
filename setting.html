@@ -1,116 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>setting page</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- bootstrap -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+        />
+        <!-- firebase -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
+        />
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+        <!-- other libraries and stylesheet -->
+        <link rel="stylesheet" href="styles/style.css" />
+    </head>
+    <body>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+        ></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>setting page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <!-- other libraries and stylesheet -->
-    <link rel="stylesheet" href="styles/style.css" />
-</head>
-<body>
-    <header class="container">
-        <nav></nav>
-    </header>
+        <header class="container">
+            <nav></nav>
+        </header>
 
-    <div class="container account-section">
-        <div class="account-header">Account</div>
-        <div class="account-email"><a href="#">Go to profile</a></div>
+        <div class="container account-section">
+            <div class="account-header">Account</div>
+            <div class="account-email"><a href="#">Go to profile</a></div>
 
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="account-card d-flex align-items-center">
-                    <div class="icon p-2"><img src="/res/info-circle.svg" alt="Icon" class="img-fluid"
-                        style="width: 50px; height: 50px; object-fit: contain;"></div>
-                    <div>
-                        <h6>Personal info</h6>
-                        <p class="mb-0 text-muted">Provide personal details</p>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="account-card d-flex align-items-center">
+                        <div class="icon p-2">
+                            <img
+                                src="/res/info-circle.svg"
+                                alt="Icon"
+                                class="img-fluid"
+                                style="
+                                    width: 50px;
+                                    height: 50px;
+                                    object-fit: contain;
+                                "
+                            />
+                        </div>
+                        <div>
+                            <h6>Personal info</h6>
+                            <p class="mb-0 text-muted">
+                                Provide personal details
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="account-card d-flex align-items-center">
-                    <div class="icon p-2"><img src="/res/enter.svg" alt="Icon" class="img-fluid"
-                        style="width: 50px; height: 50px; object-fit: contain;"></div>
-                    <div>
-                        <h6>Login & security</h6>
-                        <p class="mb-0 text-muted">Update your password and secure your account</p>
+                <div class="col-md-4">
+                    <div class="account-card d-flex align-items-center">
+                        <div class="icon p-2">
+                            <img
+                                src="/res/enter.svg"
+                                alt="Icon"
+                                class="img-fluid"
+                                style="
+                                    width: 50px;
+                                    height: 50px;
+                                    object-fit: contain;
+                                "
+                            />
+                        </div>
+                        <div>
+                            <h6>Login & security</h6>
+                            <p class="mb-0 text-muted">
+                                Update your password and secure your account
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="account-card d-flex align-items-center">
-                    <div class="icon p-2"><img src="/res/notification.svg" alt="Icon" class="img-fluid"
-                        style="width: 50px; height: 50px; object-fit: contain;"></div>
-                    <div>
-                        <h6>Notifications</h6>
-                        <p class="mb-0 text-muted">Choose notification preferences</p>
+                <div class="col-md-4">
+                    <div class="account-card d-flex align-items-center">
+                        <div class="icon p-2">
+                            <img
+                                src="/res/notification.svg"
+                                alt="Icon"
+                                class="img-fluid"
+                                style="
+                                    width: 50px;
+                                    height: 50px;
+                                    object-fit: contain;
+                                "
+                            />
+                        </div>
+                        <div>
+                            <h6>Notifications</h6>
+                            <p class="mb-0 text-muted">
+                                Choose notification preferences
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="account-card d-flex align-items-center">
-                    <div class="icon p-2"><img src="/res/shield-shaded.svg" alt="Icon" class="img-fluid"
-                        style="width: 50px; height: 50px; object-fit: contain;"></div>
-                    <div>
-                        <h6>Privacy & sharing</h6>
-                        <p class="mb-0 text-muted">Manage your personal data, connected services, and data sharing
-                            settings</p>
+                <div class="col-md-4">
+                    <div class="account-card d-flex align-items-center">
+                        <div class="icon p-2">
+                            <img
+                                src="/res/shield-shaded.svg"
+                                alt="Icon"
+                                class="img-fluid"
+                                style="
+                                    width: 50px;
+                                    height: 50px;
+                                    object-fit: contain;
+                                "
+                            />
+                        </div>
+                        <div>
+                            <h6>Privacy & sharing</h6>
+                            <p class="mb-0 text-muted">
+                                Manage your personal data, connected services,
+                                and data sharing settings
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="account-card d-flex align-items-center">
-                    <div class="icon p-2"><img src="/res/sliders.svg" alt="Icon" class="img-fluid"
-                        style="width: 50px; height: 50px; object-fit: contain;"></div>
-                    <div>
-                        <h6>preferences</h6>
-                        <p class="mb-0 text-muted">Choose cuisine, allergy, budget, and distance </p>
+                <div class="col-md-4">
+                    <div class="account-card d-flex align-items-center">
+                        <div class="icon p-2">
+                            <img
+                                src="/res/sliders.svg"
+                                alt="Icon"
+                                class="img-fluid"
+                                style="
+                                    width: 50px;
+                                    height: 50px;
+                                    object-fit: contain;
+                                "
+                            />
+                        </div>
+                        <div>
+                            <h6>preferences</h6>
+                            <p class="mb-0 text-muted">
+                                Choose cuisine, allergy, budget, and distance
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="account-card d-flex align-items-center">
-                    <div class="icon p-2"><img src="/res/people.svg" alt="Icon" class="img-fluid"
-                        style="width: 50px; height: 50px; object-fit: contain;"></div>
-                    <div>
-                        <h6>Friends</h6>
-                        <p class="mb-0 text-muted">Add and integrate groups</p>
+                <div class="col-md-4">
+                    <div class="account-card d-flex align-items-center">
+                        <div class="icon p-2">
+                            <img
+                                src="/res/people.svg"
+                                alt="Icon"
+                                class="img-fluid"
+                                style="
+                                    width: 50px;
+                                    height: 50px;
+                                    object-fit: contain;
+                                "
+                            />
+                        </div>
+                        <div>
+                            <h6>Friends</h6>
+                            <p class="mb-0 text-muted">
+                                Add and integrate groups
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="account-card d-flex align-items-center">
-                    <div class="icon p-2"><img src="/res/customer-support.svg" alt="Icon" class="img-fluid"
-                        style="width: 50px; height: 50px; object-fit: contain;"></div>
-                    <div>
-                        <h6>Support</h6>
-                        <p class="mb-0 text-muted">support</p>
+                <div class="col-md-4">
+                    <div class="account-card d-flex align-items-center">
+                        <div class="icon p-2">
+                            <img
+                                src="/res/customer-support.svg"
+                                alt="Icon"
+                                class="img-fluid"
+                                style="
+                                    width: 50px;
+                                    height: 50px;
+                                    object-fit: contain;
+                                "
+                            />
+                        </div>
+                        <div>
+                            <h6>Support</h6>
+                            <p class="mb-0 text-muted">support</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer class="text-white text-center py-3 mt-auto"></footer>
-    <script src="scripts/loadSkeleton.js"></script>
-</body>
-
+        <footer></footer>
+        <script src="scripts/firebaseAPI_DTC08.js"></script>
+        <script src="scripts/loadSkeleton.js"></script>
+    </body>
 </html>
