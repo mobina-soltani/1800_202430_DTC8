@@ -9,6 +9,7 @@ const loadSkeleton = () => {
             console.log("logged in.")
             console.log($("header").load("./components/header_after.html"));
             console.log($("footer").load("./components/footer_after.html"));
+            console.log("loaded header and footer")
         } else {
             // No user is signed in.
             console.log("not logged in.")
