@@ -19,7 +19,7 @@ const allergyPreferences = {
 const getDefaultUserPreferences = () => {
     return {
         "budget": budget,
-        "location": userLocation,
+        "userLocation": userLocation,
         "allergyPreferences": allergyPreferences,
     }
 }
