@@ -2,6 +2,7 @@ body {
     background-color: #b7e0ff;
     height: 100%;
 }
+
 .custom-gray-btn {
     background-color: #ffcfb3;
     border-color: #e1e2e2;
@@ -57,17 +58,18 @@ nav div a {
     text-decoration: none;
 }
 
-#restaurant-list > div {
+#restaurant-list>div {
     background-color: skyblue;
 }
 
-#restaurant-list > div:hover {
+#restaurant-list>div:hover {
     background-color: #198754;
 }
 
 .account-section {
     padding: 2rem;
-    max-width: 1200px; /* Adjust as needed */
+    max-width: 1200px;
+    /* Adjust as needed */
     margin: 0 auto;
 }
 
@@ -90,9 +92,12 @@ nav div a {
     border-radius: 8px;
     transition: box-shadow 0.3s ease;
     font-size: 14px;
-    flex-basis: 300px; /* Ensures cards don’t stretch beyond 300px */
-    padding: 20px; /* Adds space within each card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for card definition */
+    flex-basis: 300px;
+    /* Ensures cards don’t stretch beyond 300px */
+    padding: 20px;
+    /* Adds space within each card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Optional for card definition */
 }
 
 .account-card:hover {
@@ -128,6 +133,7 @@ footer {
 
     /* Adding bottom padding to the main content */
     .container {
-        padding-bottom: 50px; /* Adjust based on footer height */
+        padding-bottom: 50px;
+        /* Adjust based on footer height */
     }
 }
