@@ -1,40 +1,42 @@
 body {
-background-color: #B7E0FF;
+    background-color: #b7e0ff;
+    height: 100%;
 }
 .custom-gray-btn {
-    background-color: #FFCFB3;
+    background-color: #ffcfb3;
     border-color: #e1e2e2;
     padding: 0.8rem 3rem;
 }
 
-.custom-gray-btn:hover{
-    background-color: #E78F81;
+.custom-gray-btn:hover {
+    background-color: #e78f81;
 }
-
 
 .custom-form {
     color: brown;
 }
 
 header {
-    background-image: linear-gradient(to bottom, #B7E0FF, #B7E0FFaa, #B7E0FF00);
+    background-image: linear-gradient(to bottom, #b7e0ff, #b7e0ffaa, #b7e0ff00);
 }
 
 header nav form input {
     margin: 15px 0 0 15px;
     border-radius: 70%;
 }
+
 .searchbox {
-    background-color: #FFCFB3;
+    background-color: #ffcfb3;
     border-radius: 80px;
     height: 60px;
     flex-grow: 1;
     margin-right: 7px;
 }
+
 .search-btn {
     width: 50px;
     height: 50px;
-    background-color: #FFCFB3;
+    background-color: #ffcfb3;
     border: none;
     color: black;
     justify-content: center;
@@ -42,8 +44,8 @@ header nav form input {
     vertical-align: middle;
 }
 
-.search-btn:hover{
-    background-color: #E78F81;
+.search-btn:hover {
+    background-color: #e78f81;
 }
 
 .search-btn i {
@@ -55,21 +57,19 @@ nav div a {
     text-decoration: none;
 }
 
-#restaurant-list>div {
+#restaurant-list > div {
     background-color: skyblue;
 }
 
-#restaurant-list>div:hover {
+#restaurant-list > div:hover {
     background-color: #198754;
 }
-
 
 .account-section {
     padding: 2rem;
     max-width: 1200px; /* Adjust as needed */
     margin: 0 auto;
 }
-    
 
 .account-header {
     font-size: 24px;
@@ -105,8 +105,8 @@ nav div a {
     margin-right: 1rem;
 }
 
-footer{
-    background-color: #FFCFB3;
+footer {
+    background-color: #ffcfb3;
 }
 
 /* Default styling for larger screens */
@@ -125,7 +125,7 @@ footer{
         z-index: 10;
         border-top: 1px solid #ddd;
     }
-    
+
     /* Adding bottom padding to the main content */
     .container {
         padding-bottom: 50px; /* Adjust based on footer height */

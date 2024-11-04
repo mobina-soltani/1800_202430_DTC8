@@ -7,7 +7,33 @@ var uiConfig = {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
-            return true;
+
+            var user = authResult.user;
+            console.log(authResult.additionalUserinfo);
+
+            if (authResult.additionalUserInfo.isNewUser) {
+                db.collection("users")
+                    .doc(user.uid)
+                    .set({ // add default user configurations
+                        name: user.displayName,
+                        email: user.email,
+                        preferences: getDefaultUserPreferences(),
+                        friends: [],
+                        visited: [],
+                        reviews: [],
+                        otherTags: []
+                    })
+                    .then(() => {
+                        console.log("New user added.");
+                        window.location.assign("main.html");
+                    })
+                    .catch((error) => {
+                        console.log(`Error adding new user: ${error}`);
+                    });
+            } else {
+                return true;
+            }
+            return false;
         },
         uiShown: function () {
             // The widget is rendered.

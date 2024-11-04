@@ -5,14 +5,15 @@
         </a>
         <p class="h2 p-2 d-none d-md-block">EatMOJI</p>
     </div>
-    <form class="d-flex flex-row my-2 my-0 col-8 col-6">
+    <form class="d-flex flex-row my-2 my-0 col-8 col-6" id="placeSearch">
         <input
             class="form-control mr-2 my-0 searchbox"
             placeholder="Search"
             aria-label="Search"
             type="search"
+            id="searchBox"
         />
-        <button class="btn btn-outline-primary search-btn align-self-center">
+        <button id="searchSubmit" class="btn btn-outline-primary search-btn align-self-center">
             <i class="bi bi-search"></i>
         </button>
     </form>
@@ -26,10 +27,13 @@
             <img src="./icon/human.png" alt="" />
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="../setting.html">Profile</a></li>
             <li>
                 <a class="dropdown-item" onclick="logout" href="../index.html">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
+
+<!-- only execute after this is loaded -->
+<script src="/scripts/maps.js" defer></script>
