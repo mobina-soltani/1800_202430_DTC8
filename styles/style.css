@@ -137,3 +137,7 @@ footer {
         /* Adjust based on footer height */
     }
 }
+
+.no_line {
+    text-decoration: none;
+}
