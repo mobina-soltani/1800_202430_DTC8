@@ -141,3 +141,12 @@ footer {
 .no_line {
     text-decoration: none;
 }
+
+.circle-btn {
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
