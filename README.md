@@ -25,4 +25,3 @@ The sub-folders contain:
 
 `skeleton.html` is a template html for all the pages.
 아니 그러면 모바일 모드에서는 로그아웃 어캐 함? 
-TAGHYEERAT WARED SHUD!
