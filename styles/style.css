@@ -53,6 +53,10 @@ header nav form input {
     font-size: 20px;
 }
 
+#mainButtons > * {
+    background-color: #e78f81;
+}
+
 nav div a {
     color: black;
     text-decoration: none;
