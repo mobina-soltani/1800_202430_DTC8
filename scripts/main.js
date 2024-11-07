@@ -12,10 +12,8 @@ const loadRestaurant = (restaurantID) => {
 
                 let newCard = cardTemplate.content.cloneNode(true);
 
-                var docID = restaurantData.id;
-
                 newCard.querySelector(".restaurantName").innerHTML = name;
-                newCard.querySelector(".stars").innerHTML = `${stars} ⭐`;
+                newCard.querySelector(".stars").innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars} ⭐</p>`;
                 var tagsBuffer = "";
                 tags.forEach((tag) => {
                     tagsBuffer += `<span class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"> ${tag} </span>`;
@@ -23,8 +21,8 @@ const loadRestaurant = (restaurantID) => {
                 newCard.querySelector(".tags").innerHTML = tagsBuffer;
                 newCard.querySelector("img").src = "https://picsum.photos/id/1/200/200"
 
-                newCard.onclick = () => {
-                    location.href = `restaurant.html?restaurantID=${docID}`;
+                newCard.querySelector("div.main").onclick = () => {
+                    window.location.href = `restaurant.html?restaurantID=${restaurantID}`;
                 };
 
                 console.log(newCard);
