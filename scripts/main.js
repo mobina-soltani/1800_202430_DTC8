@@ -1,10 +1,15 @@
 const loadRestaurant = (restaurantID) => {
     db.collection(`places`)
-    .doc(restaurantID)
-    .get()
-    .then((restaurantDoc) => {
-        if (restaurantDoc.exists) {
-                let cardTemplate = document.getElementById("restaurantCardTemplate");
+        .doc(restaurantID)
+        .get()
+        .then((restaurantDoc) => {
+            if (restaurantDoc.exists) {
+                // get template from main
+                let cardTemplate = document.getElementById(
+                    "restaurantCardTemplate"
+                );
+
+                // get restaurant document data
                 var restaurantData = restaurantDoc.data();
                 var name = restaurantData.name;
                 var tags = restaurantData.tags;
@@ -12,20 +17,24 @@ const loadRestaurant = (restaurantID) => {
 
                 let newCard = cardTemplate.content.cloneNode(true);
 
+                // modify template
                 newCard.querySelector(".restaurantName").innerHTML = name;
-                newCard.querySelector(".stars").innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars} ⭐</p>`;
+                newCard.querySelector(
+                    ".stars"
+                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars} ⭐</p>`;
                 var tagsBuffer = "";
                 tags.forEach((tag) => {
                     tagsBuffer += `<span class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"> ${tag} </span>`;
                 });
                 newCard.querySelector(".tags").innerHTML = tagsBuffer;
-                newCard.querySelector("img").src = "https://picsum.photos/id/1/200/200"
+                newCard.querySelector("img").src =
+                    "https://picsum.photos/id/1/200/200";
 
+                // add onclick behaviour
                 newCard.querySelector("div.main").onclick = () => {
                     window.location.href = `restaurant.html?restaurantID=${restaurantID}`;
                 };
 
-                console.log(newCard);
                 document.getElementById("restaurant-list").appendChild(newCard);
             }
         });
@@ -33,12 +42,13 @@ const loadRestaurant = (restaurantID) => {
 
 // Load restaurant cards
 const loadRestaurants = (userID) => {
-
     db.collection(`users`)
         .doc(userID)
         .get()
         .then((user) => {
-            user.data().restaurants.forEach((restaurantID) => {loadRestaurant(restaurantID)});
+            user.data().restaurants.forEach((restaurantID) => {
+                loadRestaurant(restaurantID);
+            });
         });
 };
 
