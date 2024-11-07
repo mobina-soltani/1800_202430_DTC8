@@ -1,58 +1,53 @@
-const getRestaurants = () => {
-    // mock data for restaurants
-    return [
-        {
-            name: "Place 1",
-            link: "https://maps.app.goo.gl/dTYojLBTX26SXwDX6",
-            tags: [`🦐`, `🥜`, `💲💲`],
-        },
-        {
-            name: "Place 2",
-            link: "https://maps.app.goo.gl/jwbqWVMVzmfTbJKo9",
-            tags: [`💲`, `🥬`],
-        },
-        {
-            name: "Place 3",
-            link: "https://maps.app.goo.gl/3PmDGDHrGyrHx2w96",
-            tags: [`🤵`, `💵`],
-        },
-    ];
-};
+const loadRestaurant = (restaurantID) => {
+    db.collection(`places`)
+    .doc(restaurantID)
+    .get()
+    .then((restaurantDoc) => {
+        if (restaurantDoc.exists) {
+                let cardTemplate = document.getElementById("restaurantCardTemplate");
+                var restaurantData = restaurantDoc.data();
+                var name = restaurantData.name;
+                var tags = restaurantData.tags;
+                var stars = restaurantData.stars;
 
-const modifyRestaurantCard = (data, restaurant, indexInList) => {
-    // add restaurant with id `restaurant-${i}`
-    $("#restaurant-list").append(
-        $(data).attr("id", `restaurant-${indexInList}`)
-    );
+                let newCard = cardTemplate.content.cloneNode(true);
 
-    // edit header within
-    $(`#restaurant-${indexInList} > div h1`).text(restaurant.name);
+                var docID = restaurantData.id;
 
-    // add tags
-    $(`#restaurant-${indexInList} > div`).append('<p class="tags"></p>');
-    for (let i = 0, item; (item = restaurant.tags[i]); i++) {
-        $(`#restaurant-${indexInList} > div .tags`).append(
-            `<span class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"> ${item} </span>`
-        );
-    }
+                newCard.querySelector(".restaurantName").innerHTML = name;
+                newCard.querySelector(".stars").innerHTML = `${stars} ⭐`;
+                var tagsBuffer = "";
+                tags.forEach((tag) => {
+                    tagsBuffer += `<span class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"> ${tag} </span>`;
+                });
+                newCard.querySelector(".tags").innerHTML = tagsBuffer;
+                newCard.querySelector("img").src = "https://picsum.photos/id/1/200/200"
 
-    // add link to restaurant (idk maybe google or restaurant page)
-    $(`#restaurant-${indexInList}`).attr(
-        "onclick",
-        `window.open("${restaurant.link}")`
-    );
+                newCard.onclick = () => {
+                    location.href = `restaurant.html?restaurantID=${docID}`;
+                };
+
+                console.log(newCard);
+                document.getElementById("restaurant-list").appendChild(newCard);
+            }
+        });
 };
 
 // Load restaurant cards
-const loadRestaurants = () => {
-    const restaurants = getRestaurants();
-    console.log(restaurants.length);
+const loadRestaurants = (userID) => {
 
-    $.get("components/restaurant-card.html", (data) => {
-        for (let i = 0; i < restaurants.length; i++) {
-            modifyRestaurantCard(data, restaurants[i], i);
-        }
-    });
+    db.collection(`users`)
+        .doc(userID)
+        .get()
+        .then((user) => {
+            user.data().restaurants.forEach((restaurantID) => {loadRestaurant(restaurantID)});
+        });
 };
 
-loadRestaurants();
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        loadRestaurants(user.uid);
+    } else {
+        console.log("No user is logged in.");
+    }
+});
