@@ -51,19 +51,48 @@
             <nav></nav>
         </header>
         <main>
-            <div id="banner" class="d-flex flex-row mx-auto">
-
+            <div
+                id="banner"
+                class="d-flex flex-row justify-content-center mx-auto gap-2 bg-info-subtle py-2"
+            >
+                <img
+                    src="https://picsum.photos/id/1/200/200"
+                    class="rounded-3"
+                    alt=""
+                />
+                <div class="d-flex flex-column">
+                    <h1 id="restaurantName">restaurant name</h1>
+                    <p id="tags">some tags</p>
+                    <p
+                        id="stars"
+                        class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"
+                    >
+                        0 ⭐
+                    </p>
+                    <div
+                        class="mx-auto d-flex gap-2 flex-column flex-md-row align-items-center"
+                    >
+                        <span class="bg-warning-subtle rounded-3 px-2 py-1"
+                            >Add to my restaurants</span
+                        >
+                        <a
+                            href="review.html"
+                            class="text-decoration-none text-black bg-warning-subtle rounded-3 px-2 py-1"
+                            >Add review</a
+                        >
+                    </div>
+                </div>
             </div>
             <div>
-                <h2>Reviews</h2>
-                <div id="reviewList">
-
-                </div>
+                <h2 class="p-2">Reviews</h2>
+                <div id="reviewList"></div>
             </div>
         </main>
         <footer></footer>
 
         <!-- Scripts -->
+        <script src="scripts/firebaseAPI_DTC08.js"></script>
         <script src="scripts/loadSkeleton.js"></script>
+        <script src="scripts/restaurant.js"></script>
     </body>
 </html>
