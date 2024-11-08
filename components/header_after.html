@@ -1,3 +1,35 @@
+<style>
+    /* Ensure filter dropdowns align well with the search bar */
+    #placeSearch .filter-option {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 4px;
+        height: 60px;
+        width: 120px;
+        background-color: #e78f81;
+        border-color: #4b4b4b;
+    }
+
+    /* Optional: Adjust the filter and search spacing if needed */
+    #placeSearch .searchbox,
+    #placeSearch .filter-option {
+        margin-right: 8px;
+    }
+
+    /* Custom style for the profile icon button */
+    .dropdown .btn-secondary {
+        background-color: #e78f81; /* Desired background color */
+        border-color: #4b4b4b; /* Optional: to match the background color */
+    }
+
+    .dropdown .btn-secondary img {
+        background-color: transparent; /* Remove gray background on icon */
+        border-radius: 50%; /* Optional: make the icon circular */
+        padding: 5px; /* Optional: add padding around the icon */
+    }
+
+</style>
+
 <nav class="navbar navbar-expand-md">
     <div class="d-flex flex-row align-items-center">
         <a class="p-2" href="../main.html">
@@ -16,6 +48,20 @@
         <button id="searchSubmit" class="btn btn-outline-primary search-btn align-self-center">
             <i class="bi bi-search"></i>
         </button>
+
+        <!-- Filter Dropdowns -->
+        <select class="form-select mx-1 filter-option">
+            <option value="">Category</option>
+            <option value="restaurants">Restaurants</option>
+            <option value="cafes">Cafes</option>
+            <option value="shops">Shops</option>
+        </select>
+        <select class="form-select mx-1 filter-option">
+            <option value="">Rating</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+        </select>
     </form>
     <div class="dropdown d-none d-md-block mx-auto">
         <button
@@ -34,6 +80,3 @@
         </ul>
     </div>
 </nav>
-
-<!-- only execute after this is loaded -->
-<!-- <script src="/scripts/maps.js" defer></script> -->

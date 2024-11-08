@@ -154,3 +154,24 @@ footer {
     justify-content: center;
     margin: 10px 0;
 }
+
+/* Make footer stick to the bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+.py-3.my-4.d-none.d-md-block,
+.d-flex.justify-content-between.d-md-block.d-md-none.custom-img-size {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffcfb3;
+    z-index: 10; /* Ensures it stays on top if needed */
+}
