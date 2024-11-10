@@ -54,153 +54,242 @@
             <div class="container">
                 <h1>Add new restaurant</h1>
                 <form>
-                    <div class="form-group">
+                    <!-- Name -->
+                    <div class="form-group my-2">
                         <label for="exampleFormControlInput1"
-                            >Add a title</label
+                            >Restaurant Name</label
                         >
                         <input
                             type="text"
                             class="form-control"
-                            id="title"
-                            placeholder="Title"
+                            id="restaurant-name"
+                            placeholder="Restaurant name here ..."
                         />
                     </div>
-                    <br />
-                    <div class="form-group">
-                        <div class="card-body">
-                            <p>Rate your overall experience:</p>
-                            <span class="material-icons star" id="star1"
-                                >star_outline</span
+
+                    <!-- Price -->
+                    <div
+                        class="form-group d-flex flex-column flex-md-row gap-md-4 my-2"
+                    >
+                        <label for="">Price Range: </label>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault1"
+                            />
+                            <label
+                                class="form-check-label"
+                                for="flexRadioDefault1"
                             >
-                            <span class="material-icons star" id="star2"
-                                >star_outline</span
-                            >
-                            <span class="material-icons star" id="star3"
-                                >star_outline</span
-                            >
-                            <span class="material-icons star" id="star4"
-                                >star_outline</span
-                            >
-                            <span class="material-icons star" id="star5"
-                                >star_outline</span
-                            >
+                                💲
+                            </label>
                         </div>
-                        <label for="exampleFormControlSelect1"
-                            >What was the level of the hike?</label
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault2"
+                                checked
+                            />
+                            <label
+                                class="form-check-label"
+                                for="flexRadioDefault2"
+                            >
+                                💲💲
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault3"
+                                checked
+                            />
+                            <label
+                                class="form-check-label"
+                                for="flexRadioDefault3"
+                            >
+                                💲💲💲
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Allergies -->
+                    <div class="form-group d-flex flex-column">
+                        <label for="">Allergies/Notable Food Served: </label>
+                        <div
+                            class="d-flex flex-column flex-md-row gap-md-2 my-2 justify-content-md-around"
                         >
-                        <select class="form-control" id="level">
-                            <option>Hard</option>
-                            <option>Moderate</option>
-                            <option>Easy</option>
-                        </select>
-                        <br />
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1"
-                                >Which season did you do the hike?</label
-                            >
-                            <select class="form-control" id="season">
-                                <option>Fall</option>
-                                <option>Winter</option>
-                                <option>Spring</option>
-                                <option>Summer</option>
-                            </select>
-                            <br />
+                            <div class="d-flex flex-column">
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="shellfish"
+                                        id="shellfish"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="shellfish"
+                                    >
+                                        🦐 Shellfish
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="nuts"
+                                    />
+                                    <label class="form-check-label" for="nuts">
+                                        🥜 Nuts
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="poultry"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="poultry"
+                                    >
+                                        🐔 Poultry
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="egg"
+                                    />
+                                    <label class="form-check-label" for="egg">
+                                        🥚Egg
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="milk"
+                                    />
+                                    <label class="form-check-label" for="milk">
+                                        🥛Milk
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1"
-                                >What did you think of the trail?</label
-                            >
-                            <textarea
-                                class="form-control"
-                                id="description"
-                                rows="3"
-                            ></textarea>
-                        </div>
-                        <br />
-                        <!-- Flooded -->
-                        <label
-                            >Flooded
-                            <span
-                                style="display: inline-block; width: 26pt"
-                            ></span
-                        ></label>
+                    </div>
 
-                        <div class="form-check form-check-inline">
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="flooded"
-                                value="Yes"
-                            />
-                            <label>Yes</label>
+                    <!-- Cuisine -->
+                    <div class="form-group d-flex flex-column">
+                        <label for="">Cuisine: </label>
+                        <div
+                            class="d-flex flex-column flex-md-row gap-md-2 my-2 justify-content-md-around"
+                        >
+                            <div class="d-flex flex-column">
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="western"
+                                        id="western"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="western"
+                                    >
+                                        Western
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="east-asian"
+                                        id="east-asian"
+                                    />
+                                    <label class="form-check-label" for="nuts">
+                                        East Asian
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="south-asian"
+                                        id=""
+                                    />
+                                    <label class="form-check-label" for="egg">
+                                        South Asian
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="west-asian"
+                                        id="west-asian"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="west-asian"
+                                    >
+                                        West Asian/Mediterranean
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="south-american"
+                                        id="south-american"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="west-asian"
+                                    >
+                                        South American/Latin
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="flooded"
-                                value="No"
-                            />
-                            <label>No</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="flooded"
-                                value="unSure"
-                                checked=""
-                            />
-                            <label>Not sure</label>
-                        </div>
-                        <br />
-                        <!-- Scramble -->
-                        <label
-                            >Scramble
-                            <span
-                                style="display: inline-block; width: 20pt"
-                            ></span
-                        ></label>
+                    </div>
 
-                        <div class="form-check form-check-inline">
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="scrambled"
-                                value="Yes"
-                            />
-                            <label>Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="scrambled"
-                                value="No"
-                            />
-                            <label>No</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="scrambled"
-                                value="unSure"
-                                checked=""
-                            />
-                            <label>Not sure</label>
-                        </div>
+                    <!-- Google maps link -->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"
+                            >Google Maps link:
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="gmaps"
+                            placeholder="Google maps link here ..."
+                        />
+                    </div>
 
-                        <br />
-                        <div class="d-flex justify-content-end">
-                            <button
-                                type="button"
-                                class="btn btn-lg btn-primary pull-right"
-                                onclick="writeReview()"
-                            >
-                                Submit
-                            </button>
-                        </div>
+                    <div class="d-flex justify-content-end">
+                        <button
+                            type="button"
+                            class="btn btn-lg btn-primary pull-right my-2"
+                            onclick="writeReview()"
+                        >
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
