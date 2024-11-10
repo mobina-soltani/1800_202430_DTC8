@@ -295,6 +295,7 @@
 
                     <div class="d-flex justify-content-end gap-2">
                         <button
+                            id="abort"
                             type="button"
                             class="btn btn-lg btn-outline-danger pull-right my-2"
                             onclick="clearRestaurant()"
@@ -302,9 +303,19 @@
                             Abort
                         </button>
                         <button
+                            id="validate"
+                            type="button"
+                            class="btn btn-lg btn-primary pull-right my-2"
+                            onclick="validateAll()"
+                        >
+                            Validate
+                        </button>
+                        <button
+                            id="submit"
                             type="button"
                             class="btn btn-lg btn-primary pull-right my-2"
                             onclick="writeRestaurant()"
+                            disabled
                         >
                             Submit
                         </button>
@@ -312,7 +323,9 @@
                 </form>
             </div>
 
-            <div id="similars d-none"></div>
+            <div id="similars" class="d-none">
+                <h2>Similar Restaurants:</h2>
+            </div>
 
             <template id="similar-restaurant-template">
                 <div class="similar-restaurant">
