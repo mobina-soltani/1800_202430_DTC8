@@ -72,7 +72,7 @@
                         class="form-group d-flex flex-column flex-md-row gap-md-4 my-2"
                         id="price-range"
                     >
-                        <label >Price Range: </label>
+                        <label>Price Range: </label>
                         <div class="form-check">
                             <input
                                 class="form-check-input"
@@ -111,7 +111,7 @@
 
                     <!-- Allergies -->
                     <div class="form-group d-flex flex-column" id="allergies">
-                        <label >Allergies/Notable Food Served: </label>
+                        <label>Allergies/Notable Food Served: </label>
                         <div
                             class="d-flex flex-column flex-md-row gap-md-2 my-2 justify-content-md-around"
                         >
@@ -185,7 +185,7 @@
 
                     <!-- Cuisine -->
                     <div class="form-group d-flex flex-column" id="cuisine">
-                        <label >Cuisine: </label>
+                        <label>Cuisine: </label>
                         <div
                             class="d-flex flex-column flex-md-row gap-md-2 my-2 justify-content-md-around"
                         >
@@ -311,6 +311,16 @@
                     </div>
                 </form>
             </div>
+
+            <div id="similars d-none"></div>
+
+            <template id="similar-restaurant-template">
+                <div class="similar-restaurant">
+                    <h2 class="restaurant-name"></h2>
+                    <p class="city"></p>
+                    <p class="tags-here"></p>
+                </div>
+            </template>
         </main>
         <footer class="sticky-bottom"></footer>
 

@@ -33,6 +33,8 @@ const writeRestaurant = () => {
         "input#restaurant-name"
     ).value;
 
+    let gMapsText = document.querySelector("input#gmaps-link").value;
+
     let priceRangeSelectedID = document.querySelector(
         'input[name="price"]:checked'
     ).id;
@@ -41,8 +43,8 @@ const writeRestaurant = () => {
         `label[for=\"${priceRangeSelectedID}\"]`
     ).innerText;
 
+    // generate allergy tags
     var allergyTags = [];
-
     document.querySelectorAll(`#allergies input:checked`).forEach((allergy) => {
         allergyTags.push(
             document
@@ -51,26 +53,54 @@ const writeRestaurant = () => {
         );
     });
 
+    // generate cuisine tags
     var cuisineTags = [];
-
     document.querySelectorAll(`#cuisine input:checked`).forEach((cuisine) => {
         cuisineTags.push(
-            document
-                .querySelector(`label[for=${cuisine.id}]`)
-                .innerText
+            document.querySelector(`label[for=${cuisine.id}]`).innerText
         );
     });
 
-    console.log(cuisineTags)
+    // insert price range tags
+    let allTags = Array.from(allergyTags);
+    allTags.unshift(priceRangeSelectedTag);
+    console.log(allTags);
 
     if (restaurantSearchParam) {
-        db.collection("places")
+        /*         db.collection("places")
             .where("name", ">=", restaurantSearchParam)
             .get()
             .then((docs) => {
                 docs.forEach((doc) => {
                     console.log(doc.data());
                 });
+            }); */
+
+        db.collection("places")
+            .add(
+                {
+                    name: restaurantSearchParam,
+                    cuisines: cuisineTags,
+                    tags: allTags,
+                    gMapsLink: gMapsText,
+                },
+                { merge: true }
+            )
+            .then((restDoc) => {
+                console.log(`added ${restaurantSearchParam}`);
+
+                let currentUser = firebase.auth().currentUser;
+                if (currentUser) {
+                    // add restaurants to user's personal list;
+                    db.collection("users")
+                        .doc(currentUser.uid)
+                        .update({
+                            restaurants: firebase.firestore.FieldValue.arrayUnion(restDoc.id)
+                        })
+                }
+            })
+            .catch((error) => {
+                `error adding ${restaurantSearchParam}: ${error}`;
             });
     }
 };
