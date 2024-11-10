@@ -38,6 +38,10 @@
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
         <!-- other libraries and stylesheet -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="styles/style.css" />
     </head>
 
@@ -50,11 +54,49 @@
         <header class="container">
             <nav></nav>
         </header>
-        <main></main>
+        <main class="flex-grow-1 w-100 w-md-50 mx-auto pb-5">
+            <h1>
+                New Review for
+                <span id="restaurant-name-here">restaurant name</span>
+            </h1>
+
+            <form>
+                <div class="card-body">
+                    <p>Rate your overall experience:</p>
+                    <span class="material-icons star" id="star1"
+                        >star_outline</span
+                    >
+                    <span class="material-icons star" id="star2"
+                        >star_outline</span
+                    >
+                    <span class="material-icons star" id="star3"
+                        >star_outline</span
+                    >
+                    <span class="material-icons star" id="star4"
+                        >star_outline</span
+                    >
+                    <span class="material-icons star" id="star5"
+                        >star_outline</span
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1"
+                        >What did you think of the restaurant?</label
+                    >
+                    <textarea
+                        class="form-control"
+                        id="description"
+                        rows="3"
+                    ></textarea>
+                </div>
+            </form>
+        </main>
         <footer></footer>
 
         <!-- Scripts -->
         <script src="scripts/firebaseAPI_DTC08.js"></script>
         <script src="scripts/loadSkeleton.js"></script>
+        <script src="scripts/review.js"></script>
     </body>
 </html>
