@@ -21,7 +21,7 @@ const loadRestaurant = (restaurantID) => {
                 newCard.querySelector(".restaurantName").innerHTML = name;
                 newCard.querySelector(
                     ".stars"
-                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars} ⭐</p>`;
+                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars ? stars : "unrated"} ⭐</p>`;
                 var tagsBuffer = "";
                 tags.forEach((tag) => {
                     tagsBuffer += `<span class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"> ${tag} </span>`;
