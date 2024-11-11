@@ -21,7 +21,9 @@ const loadRestaurant = (restaurantID) => {
                 newCard.querySelector(".restaurantName").innerHTML = name;
                 newCard.querySelector(
                     ".stars"
-                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars ? stars : "unrated"} ⭐</p>`;
+                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${
+                    stars ? stars : "unrated"
+                } ⭐</p>`;
                 var tagsBuffer = "";
                 tags.forEach((tag) => {
                     tagsBuffer += `<span class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"> ${tag} </span>`;
@@ -49,6 +51,23 @@ const loadRestaurants = (userID) => {
             user.data().restaurants.forEach((restaurantID) => {
                 loadRestaurant(restaurantID);
             });
+        });
+};
+
+const getRandomInt = (max) => {
+    return Math.floor(Math.random() * max);
+};
+
+const chooseRandom = () => {
+    let uid = firebase.auth().currentUser.uid;
+    db.collection("users")
+        .doc(uid)
+        .get()
+        .then((doc) => {
+            let restaurants = doc.data().restaurants;
+            window.location.href = `restaurant.html?restaurantID=${
+                restaurants[getRandomInt(restaurants.length)]
+            }`;
         });
 };
 
