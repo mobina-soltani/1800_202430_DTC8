@@ -17,11 +17,21 @@ var uiConfig = {
                     .set({ // add default user configurations
                         name: user.displayName,
                         email: user.email,
-                        preferences: getDefaultUserPreferences(),
+                        preferences: {
+                            pref1: "",
+                            pref2: "",
+                            pref3: ""
+                        },
+                        Allergy: "",
+                        Budget: "",
+                        Distance: "",
                         friends: [],
                         visited: [],
                         reviews: [],
-                        otherTags: []
+                        otherTags: [],
+                        Notification: {
+                            Number: ""
+                        }
                     })
                     .then(() => {
                         console.log("New user added.");

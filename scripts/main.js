@@ -21,8 +21,7 @@ const loadRestaurant = (restaurantID) => {
                 newCard.querySelector(".restaurantName").innerHTML = name;
                 newCard.querySelector(
                     ".stars"
-                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${
-                    stars ? stars : "unrated"
+                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars ? stars : "unrated"
                 } ⭐</p>`;
                 var tagsBuffer = "";
                 tags.forEach((tag) => {
@@ -65,9 +64,8 @@ const chooseRandom = () => {
         .get()
         .then((doc) => {
             let restaurants = doc.data().restaurants;
-            window.location.href = `restaurant.html?restaurantID=${
-                restaurants[getRandomInt(restaurants.length)]
-            }`;
+            window.location.href = `restaurant.html?restaurantID=${restaurants[getRandomInt(restaurants.length)]
+                }`;
         });
 };
 
