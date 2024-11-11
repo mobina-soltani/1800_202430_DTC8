@@ -22,6 +22,8 @@ const getRestaurantInfo = () => {
                 "stars"
             ).innerHTML = `${thisRestaurant.stars} ⭐`;
         });
+
+        document.getElementById("review-link").href = `review.html?restaurantID=${restaurantID}`
 };
 
 // display restaurant reviews
