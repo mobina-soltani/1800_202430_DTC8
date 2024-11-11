@@ -49,6 +49,8 @@
                 <h5>Notification</h5>
             </div>
 
+            <!-- notification.html modifications -->
+
             <div class="mb-5 d-flex justify-content-between align-items-center">
                 <label>On/Off</label>
                 <div class="form-check form-switch">
@@ -59,19 +61,18 @@
             <div class="mb-5">
                 <div class="d-flex justify-content-between">
                     <h5>Time to Get Notification</h5>
-                    <button class="btn btn-outline-dark btn-sm mb-2"><i class="bi bi-plus"></i></button>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="notificationTime" id="time12">
+                        <input class="form-check-input" type="radio" name="notificationTime" id="time12" value="12:00">
                         <label class="form-check-label" for="time12">12:00</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="notificationTime" id="time18">
+                        <input class="form-check-input" type="radio" name="notificationTime" id="time18" value="18:00">
                         <label class="form-check-label" for="time18">18:00</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="notificationTime" id="time21">
+                        <input class="form-check-input" type="radio" name="notificationTime" id="time21" value="21:00">
                         <label class="form-check-label" for="time21">21:00</label>
                     </div>
                 </div>
@@ -79,7 +80,13 @@
 
             <div class="mb-5">
                 <label>Number of Recommended Restaurants</label>
-                <input type="number" class="form-control" placeholder="n">
+                <input type="number" class="form-control" id="restaurantCount" placeholder="n">
+            </div>
+
+            <div class="d-flex justify-content-end mt-5">
+                <button type="button" class="btn btn-secondary" , onclick="editUserInfo()">Edit</button>
+                <span style="width: 10px"></span>
+                <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
             </div>
 
         </div>
@@ -92,6 +99,7 @@
     <footer class="sticky-bottom"></footer>
     <script src="scripts/firebaseAPI_DTC08.js"></script>
     <script src="scripts/loadSkeleton.js"></script>
+    <script src="scripts/notificationSettings.js"></script>
 </body>
 
 </html>
