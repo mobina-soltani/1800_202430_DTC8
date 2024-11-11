@@ -54,10 +54,10 @@
         <header class="container">
             <nav></nav>
         </header>
-        <main class="flex-grow-1 w-100 w-md-50 mx-auto pb-5">
+        <main class="flex-grow-1 w-75 mx-auto pb-5 mx-auto">
             <h1>
-                New Review for
-                <span id="restaurant-name-here">restaurant name</span>
+                Review for
+                <span id="restaurant-name-here">restaurant name</span>:
             </h1>
 
             <form>
@@ -89,6 +89,23 @@
                         id="description"
                         rows="3"
                     ></textarea>
+                </div>
+                <div class="d-flex justify-content-end mt-2 gap-2">
+                    <button
+                        type="button"
+                        class="btn btn-lg btn-outline-danger pull-right"
+                        onclick="clearFields()"
+                    >
+                        Abort
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-lg btn-primary pull-right"
+                        onclick="writeReview()"
+                    >
+                        Submit
+                    </button>
+
                 </div>
             </form>
         </main>
