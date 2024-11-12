@@ -76,3 +76,43 @@ firebase.auth().onAuthStateChanged((user) => {
         console.log("No user is logged in.");
     }
 });
+
+
+
+
+// main.js
+document.addEventListener('DOMContentLoaded', async function () {
+    const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx"; // Replace with your actual Yelp API key
+    const searchQuery = localStorage.getItem('searchQuery');
+    const restaurantList = document.getElementById('restaurant-list');
+    const template = document.getElementById('restaurantCardTemplate');
+
+    if (searchQuery) {
+        try {
+            const response = await fetch(`https://api.yelp.com/v3/businesses/search?location=Vancouver, BC&term=${encodeURIComponent(searchQuery)}`, {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+
+            // Clear any existing content
+            restaurantList.innerHTML = '';
+
+            // Populate restaurant list with Yelp data
+            data.businesses.forEach(business => {
+                const restaurantCard = template.content.cloneNode(true);
+                restaurantCard.querySelector('.restaurantImg').src = business.image_url || 'default_image.jpg';
+                restaurantCard.querySelector('.restaurantName').textContent = business.name;
+                restaurantCard.querySelector('.tags').textContent = business.categories.map(cat => cat.title).join(', ');
+                restaurantCard.querySelector('.stars').textContent = `Rating: ${business.rating} (${business.review_count} reviews)`;
+
+                restaurantList.appendChild(restaurantCard);
+            });
+        } catch (error) {
+            console.error('Error fetching Yelp data:', error);
+            restaurantList.innerHTML = '<p>Failed to load restaurant data.</p>';
+        }
+    }
+});

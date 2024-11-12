@@ -18,16 +18,20 @@
 
     /* Custom style for the profile icon button */
     .dropdown .btn-secondary {
-        background-color: #e78f81; /* Desired background color */
-        border-color: #4b4b4b; /* Optional: to match the background color */
+        background-color: #e78f81;
+        /* Desired background color */
+        border-color: #4b4b4b;
+        /* Optional: to match the background color */
     }
 
     .dropdown .btn-secondary img {
-        background-color: transparent; /* Remove gray background on icon */
-        border-radius: 50%; /* Optional: make the icon circular */
-        padding: 5px; /* Optional: add padding around the icon */
+        background-color: transparent;
+        /* Remove gray background on icon */
+        border-radius: 50%;
+        /* Optional: make the icon circular */
+        padding: 5px;
+        /* Optional: add padding around the icon */
     }
-
 </style>
 
 <nav class="navbar navbar-expand-md">
@@ -38,16 +42,23 @@
         <p class="h2 p-2 d-none d-md-block">EatMOJI</p>
     </div>
     <form class="d-flex flex-row my-2 my-0 col-8 col-6" id="placeSearch">
-        <input
-            class="form-control mr-2 my-0 searchbox"
-            placeholder="Search"
-            aria-label="Search"
-            type="search"
-            id="searchBox"
-        />
+        <input class="form-control mr-2 my-0 searchbox" placeholder="Search" aria-label="Search" type="search"
+            id="searchBox" />
         <button id="searchSubmit" class="btn btn-outline-primary search-btn align-self-center">
             <i class="bi bi-search"></i>
         </button>
+        <!-- header_after.html -->
+        <script>
+            document.getElementById('searchSubmit').addEventListener('click', function (event) {
+                event.preventDefault();
+                const query = document.getElementById('searchBox').value;
+                if (query) {
+                    localStorage.setItem('searchQuery', query);
+                    window.location.href = '../main.html';
+                }
+            });
+        </script>
+
 
         <!-- Filter Dropdowns -->
         <select class="form-select mx-1 filter-option">
@@ -64,12 +75,7 @@
         </select>
     </form>
     <div class="dropdown d-none d-md-block mx-auto">
-        <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-        >
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="./icon/human.png" alt="" />
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
