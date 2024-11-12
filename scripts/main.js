@@ -80,7 +80,6 @@ firebase.auth().onAuthStateChanged((user) => {
 
 
 
-// main.js
 document.addEventListener('DOMContentLoaded', async function () {
     const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx"; // Replace with your actual Yelp API key
     const searchQuery = localStorage.getItem('searchQuery');
@@ -97,10 +96,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
             const data = await response.json();
 
-            // Clear any existing content
             restaurantList.innerHTML = '';
 
-            // Populate restaurant list with Yelp data
             data.businesses.forEach(business => {
                 const restaurantCard = template.content.cloneNode(true);
                 restaurantCard.querySelector('.restaurantImg').src = business.image_url || 'default_image.jpg';
