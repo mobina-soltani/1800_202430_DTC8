@@ -56,29 +56,33 @@
                 <p id="bio-goes-here">No bio yet.</p>
             </div>
             <div
-                class="d-flex flex-column flex-md-row justify-content-between col-10 mx-auto"
+                class="d-flex flex-column flex-md-row gap-5 col-8 mx-auto"
             >
-                <h2>Restaurants</h2>
-                <div id="restaurant-list"></div>
-                <h2>Reviews</h2>
-                <div id="review-list"></div>
+                <div class="w-50">
+                    <h2>Restaurants</h2>
+                    <div id="restaurant-list" class="d-flex flex-column gap-2"></div>
+                </div>
+                <div class="w-50 d-flex flex-column">
+                    <h2>Reviews</h2>
+                    <div id="review-list"></div>
+                </div>
             </div>
         </main>
         <footer class="sticky-bottom mt-4"></footer>
 
-        <template class="restaurant-card">
-            <div>
-                <h2 class="restaurant-name rounded-3"></h2>
+        <template id="restaurant-card">
+            <div class="rounded-3 p-1">
+                <h3 class="restaurant-name"></h3>
                 <p class="tags"></p>
             </div>
         </template>
 
-        <template class="review-card">
+        <template id="review-card">
             <div>
-                <h2 class="restaurant-name"></h2>
+                <h3 class="restaurant-name"></h3>
                 <p class="number-of-stars"></p>
                 <p class="description"></p>
-            </div>            
+            </div>
         </template>
 
         <!-- Scripts -->
