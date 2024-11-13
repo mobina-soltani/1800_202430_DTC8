@@ -55,8 +55,10 @@
                 <h1 id="name-goes-here"></h1>
                 <p id="bio-goes-here">No bio yet.</p>
             </div>
-            <div class="d-flex flex-column flex-md-row justify-content-between col-10 mx-auto">
-                <h2>Liked Restaurants</h2>
+            <div
+                class="d-flex flex-column flex-md-row justify-content-between col-10 mx-auto"
+            >
+                <h2>Restaurants</h2>
                 <div id="restaurant-list"></div>
                 <h2>Reviews</h2>
                 <div id="review-list"></div>
@@ -64,8 +66,20 @@
         </main>
         <footer class="sticky-bottom mt-4"></footer>
 
-        <template class="restaurant-card"></template>
-        <template class="review-card"></template>
+        <template class="restaurant-card">
+            <div>
+                <h2 class="restaurant-name rounded-3"></h2>
+                <p class="tags"></p>
+            </div>
+        </template>
+
+        <template class="review-card">
+            <div>
+                <h2 class="restaurant-name"></h2>
+                <p class="number-of-stars"></p>
+                <p class="description"></p>
+            </div>            
+        </template>
 
         <!-- Scripts -->
         <script src="scripts/firebaseAPI_DTC08.js"></script>
