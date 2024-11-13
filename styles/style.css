@@ -62,11 +62,11 @@ nav div a {
     text-decoration: none;
 }
 
-#restaurant-list>div {
+#restaurant-list>div, #review-list>div {
     background-color: skyblue;
 }
 
-#restaurant-list>div:hover {
+#restaurant-list>div:hover, #review-list>div:hover {
     background-color: #198754;
 }
 
