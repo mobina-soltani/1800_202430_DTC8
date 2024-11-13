@@ -1,1 +1,4 @@
+
 const doAll = () => {};
+
+doAll();
