@@ -78,10 +78,8 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 
-
-
 document.addEventListener('DOMContentLoaded', async function () {
-    const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx"; // Replace with your actual Yelp API key
+    const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
     const searchQuery = localStorage.getItem('searchQuery');
     const restaurantList = document.getElementById('restaurant-list');
     const template = document.getElementById('restaurantCardTemplate');
@@ -105,6 +103,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                 restaurantCard.querySelector('.tags').textContent = business.categories.map(cat => cat.title).join(', ');
                 restaurantCard.querySelector('.stars').textContent = `Rating: ${business.rating} (${business.review_count} reviews)`;
 
+
+                const address = `${business.location.address1}, ${business.location.city}, ${business.location.state} ${business.location.zip_code}`;
+                restaurantCard.querySelector('.address').textContent = address;
+
+
+                const detailButton = restaurantCard.querySelector('.detail-button');
+                detailButton.addEventListener('click', () => {
+                    // 식당의 ID를 쿼리 파라미터로 전달하여 상세 페이지로 이동
+                    window.location.href = `restaurant-detail.html?id=${encodeURIComponent(business.id)}`;
+                });
+
+
                 restaurantList.appendChild(restaurantCard);
             });
         } catch (error) {
@@ -113,3 +123,4 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 });
+
