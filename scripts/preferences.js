@@ -23,10 +23,10 @@ function populateUserInfo() {
                         document.getElementById("cuisineInput").value = userCuisine;
                     }
                     if (userCuisine != null) {
-                        document.getElementById("cuisineInput").value = userCuisine1;
+                        document.getElementById("cuisineInput1").value = userCuisine1;
                     }
                     if (userCuisine != null) {
-                        document.getElementById("cuisineInput").value = userCuisine2;
+                        document.getElementById("cuisineInput2").value = userCuisine2;
                     }
                     if (userAllergy != null) {
                         document.getElementById("allergyInput").value = userAllergy;
