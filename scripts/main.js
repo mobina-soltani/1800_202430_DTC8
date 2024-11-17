@@ -21,7 +21,8 @@ const loadRestaurant = (restaurantID) => {
                 newCard.querySelector(".restaurantName").innerHTML = name;
                 newCard.querySelector(
                     ".stars"
-                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars ? stars : "unrated"
+                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${
+                    stars ? stars : "unrated"
                 } ⭐</p>`;
                 var tagsBuffer = "";
                 tags.forEach((tag) => {
@@ -64,8 +65,9 @@ const chooseRandom = () => {
         .get()
         .then((doc) => {
             let restaurants = doc.data().restaurants;
-            window.location.href = `restaurant.html?restaurantID=${restaurants[getRandomInt(restaurants.length)]
-                }`;
+            window.location.href = `restaurant.html?restaurantID=${
+                restaurants[getRandomInt(restaurants.length)]
+            }`;
         });
 };
 
@@ -77,52 +79,59 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
-
-document.addEventListener('DOMContentLoaded', async function () {
-    const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
-    const searchQuery = localStorage.getItem('searchQuery');
-    const restaurantList = document.getElementById('restaurant-list');
-    const template = document.getElementById('restaurantCardTemplate');
+document.addEventListener("DOMContentLoaded", async function () {
+    const apiKey =
+        "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
+    const searchQuery = localStorage.getItem("searchQuery");
+    const restaurantList = document.getElementById("restaurant-list");
+    const template = document.getElementById("restaurantCardTemplate");
 
     if (searchQuery) {
         try {
-            const response = await fetch(`https://api.yelp.com/v3/businesses/search?location=Vancouver, BC&term=${encodeURIComponent(searchQuery)}`, {
-                headers: {
-                    Authorization: `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json'
+            const response = await fetch(
+                `https://api.yelp.com/v3/businesses/search?location=Vancouver, BC&term=${encodeURIComponent(
+                    searchQuery
+                )}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        "Content-Type": "application/json",
+                    },
                 }
-            });
+            );
             const data = await response.json();
 
-            restaurantList.innerHTML = '';
+            restaurantList.innerHTML = "";
 
-            data.businesses.forEach(business => {
+            data.businesses.forEach((business) => {
                 const restaurantCard = template.content.cloneNode(true);
-                restaurantCard.querySelector('.restaurantImg').src = business.image_url || 'default_image.jpg';
-                restaurantCard.querySelector('.restaurantName').textContent = business.name;
-                restaurantCard.querySelector('.tags').textContent = business.categories.map(cat => cat.title).join(', ');
-                restaurantCard.querySelector('.stars').textContent = `Rating: ${business.rating} (${business.review_count} reviews)`;
-
+                restaurantCard.querySelector(".restaurantImg").src =
+                    business.image_url || "default_image.jpg";
+                restaurantCard.querySelector(".restaurantName").textContent =
+                    business.name;
+                restaurantCard.querySelector(".tags").textContent =
+                    business.categories.map((cat) => cat.title).join(", ");
+                restaurantCard.querySelector(
+                    ".stars"
+                ).textContent = `Rating: ${business.rating} (${business.review_count} reviews)`;
 
                 const address = `${business.location.address1}, ${business.location.city}, ${business.location.state} ${business.location.zip_code}`;
-                restaurantCard.querySelector('.address').textContent = address;
+                restaurantCard.querySelector(".address").textContent = address;
 
-
-                const detailButton = restaurantCard.querySelector('.detail-button');
-                detailButton.addEventListener('click', () => {
+                const detailButton =
+                    restaurantCard.querySelector(".detail-button");
+                detailButton.addEventListener("click", () => {
                     // 식당의 ID를 쿼리 파라미터로 전달하여 상세 페이지로 이동
-                    window.location.href = `restaurant-detail.html?id=${encodeURIComponent(business.id)}`;
+                    window.location.href = `restaurant-detail.html?id=${encodeURIComponent(
+                        business.id
+                    )}`;
                 });
-
 
                 restaurantList.appendChild(restaurantCard);
             });
         } catch (error) {
-            console.error('Error fetching Yelp data:', error);
-            restaurantList.innerHTML = '<p>Failed to load restaurant data.</p>';
+            console.error("Error fetching Yelp data:", error);
+            restaurantList.innerHTML = "<p>Failed to load restaurant data.</p>";
         }
     }
 });
-
-
-
