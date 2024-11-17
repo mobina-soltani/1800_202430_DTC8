@@ -57,9 +57,15 @@ const writeReview = () => {
             })
             .then((review) => {
                 // add to reviews on user page
-                db.collection("users").doc(uid).update({
-                    reviews: firebase.firestore.FieldValue.arrayUnion(review.id),
-                });
+                db.collection("users")
+                    .doc(uid)
+                    .update({
+                        reviews: firebase.firestore.FieldValue.arrayUnion(
+                            review.id
+                        ),
+                    });
+                
+                window.location.href = `../restaurant.html?restaurantID=${restaurantID}`
             });
     }
 };
