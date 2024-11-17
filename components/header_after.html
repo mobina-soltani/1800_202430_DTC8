@@ -58,20 +58,25 @@
                 }
             });
         </script>
+        <script>
+            document.querySelector('.filter-option').addEventListener('change', function () {
+                const selectedRating = this.value;
+                if (selectedRating) {
+                    localStorage.setItem('selectedRating', selectedRating);
+                } else {
+                    localStorage.removeItem('selectedRating');
+                }
+            });
+        </script>
+
 
 
         <!-- Filter Dropdowns -->
         <select class="form-select mx-1 filter-option">
-            <option value="">Category</option>
-            <option value="restaurants">Restaurants</option>
-            <option value="cafes">Cafes</option>
-            <option value="shops">Shops</option>
-        </select>
-        <select class="form-select mx-1 filter-option">
             <option value="">Rating</option>
-            <option value="5">5 Stars</option>
+            <option value="4.5">4.5 Stars</option>
             <option value="4">4 Stars</option>
-            <option value="3">3 Stars</option>
+            <option value="1">All</option>
         </select>
     </form>
     <div class="dropdown d-none d-md-block mx-auto">
