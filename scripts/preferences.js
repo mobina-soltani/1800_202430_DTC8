@@ -19,22 +19,23 @@ function populateUserInfo() {
 
 
                     //if the data fields are not empty, then write them in to the form.
-                    if (userCuisine != null) {
+                    if (!userCuisine) {
                         document.getElementById("cuisineInput").value = userCuisine;
                     }
-                    if (userCuisine != null) {
+                    if (!userCuisine1) {
                         document.getElementById("cuisineInput1").value = userCuisine1;
                     }
-                    if (userCuisine != null) {
+                    if (!userCuisine2) {
                         document.getElementById("cuisineInput2").value = userCuisine2;
                     }
-                    if (userAllergy != null) {
+                    if (!userAllergy) {
                         document.getElementById("allergyInput").value = userAllergy;
                     }
-                    if (userBudget != null) {
-                        document.getElementById("budgetInput").value = userBudget;
+                    if (!userBudget) {
+                        console.log(userBudget)
+                        document.querySelector(`#price-${userBudget}`).checked = true;
                     }
-                    if (userDistance != null) {
+                    if (!userDistance) {
                         document.getElementById("distanceInput").value = userDistance;
                     }
                 })
@@ -67,7 +68,7 @@ function saveUserInfo() {
     userCuisine2 = document.getElementById('cuisineInput2').value;
     userAllergy = document.getElementById('allergyInput').value;
     userBudget = document.getElementById('budgetInput').value;
-    userDistance = document.getElementById('distanceInput').value;
+    userDistance = parseInt(document.getElementById('distanceInput').value);
 
     currentUser.update({
         "preferences.pref1": userCuisine,
