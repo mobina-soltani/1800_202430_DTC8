@@ -88,10 +88,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (searchQuery) {
         try {
+            let params = new URLSearchParams({
+                location: "Vancouver, BC",
+                term: encodeURIComponent(searchQuery),
+                limit: 10,
+                categories: "restaurants"
+            });
             const response = await fetch(
-                `https://api.yelp.com/v3/businesses/search?location=Vancouver, BC&term=${encodeURIComponent(
-                    searchQuery
-                )}`,
+                `https://api.yelp.com/v3/businesses/search?${params}`,
                 {
                     headers: {
                         Authorization: `Bearer ${apiKey}`,
