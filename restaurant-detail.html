@@ -24,11 +24,18 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- Firebase App (필수) -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+
+    <!-- Firebase Authentication (선택사항, 필요한 경우) -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
+
+    <!-- Firebase Firestore (실시간 데이터베이스 대용) -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"></script>
 
     <!-- other libraries and stylesheet -->
     <link rel="stylesheet" href="styles/style.css" />
     <style>
-        /* 상세 페이지에 필요한 CSS를 여기에 추가하세요 */
         .restaurant-detail {
             max-width: 800px;
             margin: 0 auto;
@@ -53,6 +60,7 @@
         .phone {
             margin: 10px 0;
         }
+
     </style>
 </head>
 
@@ -63,6 +71,134 @@
     <header class="container">
         <nav></nav>
     </header>
+
+    <div class="restaurant-detail">
+        <img class="restaurantImg" src="" alt="Restaurant Image">
+        <h1 class="restaurantName"></h1>
+        <p class="tags"></p>
+        <p class="stars"></p>
+        <p class="address"></p>
+        <p class="phone"></p>
+        <h2>Menu</h2>
+        <ul class="menu-list"></ul>
+        <!-- 추가적인 상세 정보 표시 가능 -->
+        <h2>Leave a Review</h2>
+        <form id="review-form">
+            <label for="reviewer-name">Your Name:</label><br>
+            <input type="text" id="reviewer-name" name="reviewer-name" required><br><br>
+
+            <label for="review-rating">Rating:</label><br>
+            <select id="review-rating" name="review-rating" required>
+                <option value="">Select Rating</option>
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Very Good</option>
+                <option value="3">3 - Good</option>
+                <option value="2">2 - Fair</option>
+                <option value="1">1 - Poor</option>
+            </select><br><br>
+
+            <label for="review-text">Review:</label><br>
+            <textarea id="review-text" name="review-text" rows="4" cols="50" required></textarea><br><br>
+
+            <button type="submit">Submit Review</button>
+        </form>
+
+        <!-- 사용자 리뷰 표시 -->
+        <h2>Reviews</h2>
+        <div id="user-reviews"></div>
+
+        <!-- Yelp 리뷰 표시 -->
+        <div id="yelp-reviews"></div>
+    </div>
+    <script>
+        firebase.initializeApp(firebaseConfig);
+
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx"; // 여기에 실제 Yelp API 키를 입력하세요
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const restaurantId = urlParams.get('id');
+
+            if (restaurantId) {
+                try {
+                    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+                    const response = await fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/${restaurantId}`, {
+                        headers: {
+                            Authorization: `Bearer ${apiKey}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const business = await response.json();
+                    loadUserReviews(restaurantId);
+
+                    const reviewForm = document.getElementById('review-form');
+                    reviewForm.addEventListener('submit', function (event) {
+                        event.preventDefault();
+                        submitReview(restaurantId);
+                    });
+
+                } catch (error) {
+                    console.error('Error fetching business details:', error);
+                    document.querySelector('.restaurant-detail').innerHTML = '<p>Failed to load restaurant details.</p>';
+                }
+            } else {
+                document.querySelector('.restaurant-detail').innerHTML = '<p>No restaurant ID provided.</p>';
+            }
+
+            function loadUserReviews(restaurantId) {
+                const userReviewsDiv = document.getElementById('user-reviews');
+                userReviewsDiv.innerHTML = ''; 
+
+                db.collection('reviews')
+                    .where('restaurantId', '==', restaurantId)
+                    .orderBy('timestamp', 'desc')
+                    .get()
+                    .then((querySnapshot) => {
+                        if (querySnapshot.empty) {
+                            userReviewsDiv.innerHTML = '<p>No reviews yet. Be the first to leave a review!</p>';
+                        } else {
+                            querySnapshot.forEach((doc) => {
+                                const review = doc.data();
+                                const reviewElement = document.createElement('div');
+                                reviewElement.classList.add('review');
+                                reviewElement.innerHTML = `
+                                        <p><strong>${review.name}</strong> (${review.rating} stars)</p>
+                                        <p>${review.text}</p>
+                                    `;
+                                userReviewsDiv.appendChild(reviewElement);
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error loading reviews: ', error);
+                    });
+            }
+
+            async function submitReview(restaurantId) {
+                const name = document.getElementById('reviewer-name').value;
+                const rating = document.getElementById('review-rating').value;
+                const text = document.getElementById('review-text').value;
+
+                const newReview = {
+                    restaurantId: restaurantId,
+                    name: name,
+                    rating: parseInt(rating),
+                    text: text,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                try {
+
+                    await db.collection('reviews').add(newReview);
+                    document.getElementById('review-form').reset();
+                    loadUserReviews(restaurantId);
+                } catch (error) {
+                    console.error('Error adding review: ', error);
+                }
+            }
+        });
+    </script>
 
 
     <main>
