@@ -79,7 +79,6 @@
         <p class="address"></p>
         <p class="phone"></p>
         <ul class="menu-list"></ul>
-        <!-- 추가적인 상세 정보 표시 가능 -->
         <h2>Review</h2>
         <form id="review-form">
             <label for="reviewer-name">Your Name:</label><br>
@@ -106,97 +105,8 @@
         <!-- Yelp 리뷰 표시 -->
         <div id="yelp-reviews"></div>
     </div>
-    <!-- <script>
-        firebase.initializeApp(firebaseConfig);
 
-
-        document.addEventListener('DOMContentLoaded', async function () {
-            const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx"; // 여기에 실제 Yelp API 키를 입력하세요
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const restaurantId = urlParams.get('id');
-
-            if (restaurantId) {
-                try {
-                    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-                    const response = await fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/${restaurantId}`, {
-                        headers: {
-                            Authorization: `Bearer ${apiKey}`,
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                    const business = await response.json();
-                    loadUserReviews(restaurantId);
-
-                    const reviewForm = document.getElementById('review-form');
-                    reviewForm.addEventListener('submit', function (event) {
-                        event.preventDefault();
-                        submitReview(restaurantId);
-                    });
-
-                } catch (error) {
-                    console.error('Error fetching business details:', error);
-                    document.querySelector('.restaurant-detail').innerHTML = '<p>Failed to load restaurant details.</p>';
-                }
-            } else {
-                document.querySelector('.restaurant-detail').innerHTML = '<p>No restaurant ID provided.</p>';
-            }
-
-            function loadUserReviews(restaurantId) {
-                const userReviewsDiv = document.getElementById('user-reviews');
-                userReviewsDiv.innerHTML = '';
-
-                db.collection('reviews')
-                    .where('restaurantId', '==', restaurantId)
-                    .orderBy('timestamp', 'desc')
-                    .get()
-                    .then((querySnapshot) => {
-                        if (querySnapshot.empty) {
-                            userReviewsDiv.innerHTML = '<p>No reviews yet. Be the first to leave a review!</p>';
-                        } else {
-                            querySnapshot.forEach((doc) => {
-                                const review = doc.data();
-                                const reviewElement = document.createElement('div');
-                                reviewElement.classList.add('review');
-                                reviewElement.innerHTML = `
-                                        <p><strong>${review.name}</strong> (${review.rating} stars)</p>
-                                        <p>${review.text}</p>
-                                    `;
-                                userReviewsDiv.appendChild(reviewElement);
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error loading reviews: ', error);
-                    });
-            }
-
-            async function submitReview(restaurantId) {
-                const name = document.getElementById('reviewer-name').value;
-                const rating = document.getElementById('review-rating').value;
-                const text = document.getElementById('review-text').value;
-
-                const newReview = {
-                    restaurantId: restaurantId,
-                    name: name,
-                    rating: parseInt(rating),
-                    text: text,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                };
-
-                try {
-
-                    await db.collection('reviews').add(newReview);
-                    document.getElementById('review-form').reset();
-                    loadUserReviews(restaurantId);
-                } catch (error) {
-                    console.error('Error adding review: ', error);
-                }
-            }
-        });
-    </script> -->
     <script>
-        // Firebase 구성 객체 (실제 값으로 대체하세요)
         const firebaseConfig = {
             apiKey: "AIzaSyCDPOUlHTBWi2BfOQrh3t3htlUtqWriiwU",
             authDomain: "eatmoji.firebaseapp.com",
@@ -205,26 +115,17 @@
             messagingSenderId: "112799543976",
             appId: "1:112799543976:web:8c84f5fd088c5a83fb089d"
         };
-
-        // Firebase 초기화
         firebase.initializeApp(firebaseConfig);
-
-        // Firestore 초기화
         const db = firebase.firestore();
 
         document.addEventListener('DOMContentLoaded', async function () {
-            const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx"; // 여기에 실제 Yelp API 키를 입력하세요
-
-            // URL에서 식당 ID 추출하기
+            const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
             const urlParams = new URLSearchParams(window.location.search);
             const restaurantId = urlParams.get('id');
 
             if (restaurantId) {
                 try {
-                    // CORS 프록시 URL 설정
                     const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-
-                    // Yelp Business Details API 호출
                     const response = await fetch(`${proxyUrl}https://api.yelp.com/v3/businesses/${restaurantId}`, {
                         headers: {
                             Authorization: `Bearer ${apiKey}`,
@@ -233,7 +134,6 @@
                     });
                     const business = await response.json();
 
-                    // 페이지에 식당 상세 정보 표시하기
                     document.querySelector('.restaurantImg').src = business.image_url || 'default_image.jpg';
                     document.querySelector('.restaurantName').textContent = business.name;
                     document.querySelector('.tags').textContent = business.categories.map(cat => cat.title).join(', ');
@@ -241,19 +141,13 @@
                     document.querySelector('.address').textContent = business.location.display_address.join(', ');
                     document.querySelector('.phone').textContent = `Phone: ${business.display_phone}`;
 
-                    // 사용자 리뷰 로드 및 표시
                     loadUserReviews(restaurantId);
 
-                    // 리뷰 작성 폼 처리
                     const reviewForm = document.getElementById('review-form');
                     reviewForm.addEventListener('submit', function (event) {
                         event.preventDefault();
                         submitReview(restaurantId);
                     });
-
-                    // Yelp 리뷰 가져오기
-                    // 기존 코드 유지
-
                 } catch (error) {
                     console.error('Error fetching business details:', error);
                     document.querySelector('.restaurant-detail').innerHTML = '<p>Failed to load restaurant details.</p>';
@@ -262,7 +156,6 @@
                 document.querySelector('.restaurant-detail').innerHTML = '<p>No restaurant ID provided.</p>';
             }
 
-            // 사용자 리뷰를 로드하여 표시하는 함수 (실시간 업데이트 적용)
             function loadUserReviews(restaurantId) {
                 const userReviewsDiv = document.getElementById('user-reviews');
 
@@ -270,7 +163,7 @@
                     .where('restaurantId', '==', restaurantId)
                     .orderBy('timestamp', 'desc')
                     .onSnapshot((querySnapshot) => {
-                        userReviewsDiv.innerHTML = ''; // 데이터 변경 시 기존 리뷰 삭제
+                        userReviewsDiv.innerHTML = '';
 
                         if (querySnapshot.empty) {
                             userReviewsDiv.innerHTML = '<p>No reviews yet. Be the first to leave a review!</p>';
@@ -291,7 +184,6 @@
                     });
             }
 
-            // 리뷰를 제출하는 함수
             async function submitReview(restaurantId) {
                 const name = document.getElementById('reviewer-name').value;
                 const rating = document.getElementById('review-rating').value;
@@ -306,13 +198,9 @@
                 };
 
                 try {
-                    // Firestore에 리뷰 추가
+
                     await db.collection('reviews').add(newReview);
-
-                    // 리뷰 폼 초기화
                     document.getElementById('review-form').reset();
-
-                    // 리뷰 목록 갱신은 실시간 업데이트로 처리되므로 추가 코드 불필요
                 } catch (error) {
                     console.error('Error adding review: ', error);
                 }
