@@ -1,5 +1,6 @@
 # vscode folder
 .vscode
+.DStore
 
 # firebaseAPI
 scripts/firebaseAPI_DTC08.js
