@@ -97,12 +97,22 @@ const toggleRestaurant = async (alias) => {
     console.log(userRestaurants);
 };
 
+var latitude, longitude; // idk if making this global is ok
 const toggleLocation = () => {
     let locationBtn = document.querySelector("#toggle-location");
     if (locationBtn.textContent == "Location: Off") {
         locationBtn.textContent = "Location: On";
+        navigator.geolocation.getCurrentPosition((pos) => {
+            const crd = pos.coords;
+            latitude = crd.latitude;
+            longitude = crd.longitude;
+        });
     } else {
         locationBtn.textContent = "Location: Off";
+
+        // vancouver coordinates
+        latitude = 49.2577062;
+        longitude = -123.2063043; 
     }
 };
 
