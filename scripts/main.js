@@ -97,22 +97,36 @@ const toggleRestaurant = async (alias) => {
     console.log(userRestaurants);
 };
 
-var latitude, longitude; // idk if making this global is ok
+// vancouver coordinates
+var latitude = 49.2577062;
+var longitude = -123.2063043;
+
+// we should put this in preferences
 const toggleLocation = () => {
     let locationBtn = document.querySelector("#toggle-location");
+
     if (locationBtn.textContent == "Location: Off") {
         locationBtn.textContent = "Location: On";
-        navigator.geolocation.getCurrentPosition((pos) => {
-            const crd = pos.coords;
-            latitude = crd.latitude;
-            longitude = crd.longitude;
-        });
+        console.log("location now on");
+        // toggle location true in db
     } else {
         locationBtn.textContent = "Location: Off";
+        console.log("location now off");
+        // toggle location false in db
+    }
 
-        // vancouver coordinates
-        latitude = 49.2577062;
-        longitude = -123.2063043; 
+    console.log(`lat: ${latitude}, long: ${longitude}`);
+};
+
+// getCurrentPosition in async/await style
+const getCoordinates = async () => {
+    const pos = await new Promise((res, rej) => {
+        navigator.geolocation.getCurrentPosition(res, rej);
+    });
+
+    return {
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude
     }
 };
 
