@@ -209,7 +209,7 @@ main {
     margin: 5px 0;
 }
 
-.detail-button .toggle-restaurant {
+.detail-button, .toggle-restaurant {
     margin-top: 10px;
     padding: 8px 12px;
     background-color: #0073bb;
