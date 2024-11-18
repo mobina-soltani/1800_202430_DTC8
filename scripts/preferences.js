@@ -32,7 +32,6 @@ function populateUserInfo() {
                         document.getElementById("allergyInput").value = userAllergy;
                     }
                     if (!userBudget) {
-                        console.log(userBudget)
                         document.querySelector(`#price-${userBudget}`).checked = true;
                     }
                     if (!userDistance) {
