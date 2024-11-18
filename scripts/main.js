@@ -21,7 +21,8 @@ const loadRestaurant = (restaurantID) => {
                 newCard.querySelector(".restaurantName").innerHTML = name;
                 newCard.querySelector(
                     ".stars"
-                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${stars ? stars : "unrated"
+                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${
+                    stars ? stars : "unrated"
                 } ⭐</p>`;
                 var tagsBuffer = "";
                 tags.forEach((tag) => {
@@ -32,9 +33,9 @@ const loadRestaurant = (restaurantID) => {
                     "https://picsum.photos/id/1/200/200";
 
                 // add onclick behaviour
-                newCard.querySelector("div.main").onclick = () => {
-                    window.location.href = `restaurant.html?restaurantID=${restaurantID}`;
-                };
+                // newCard.querySelector("div.main").onclick = () => {
+                //     window.location.href = `restaurant.html?restaurantID=${restaurantID}`;
+                // };
 
                 document.getElementById("restaurant-list").appendChild(newCard);
             }
@@ -77,7 +78,6 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
-
 document.addEventListener("DOMContentLoaded", async function () {
     const apiKey =
         "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 location: "Vancouver, BC",
                 term: encodeURIComponent(searchQuery),
                 limit: 20,
-                categories: "restaurants"
+                categories: "restaurants",
             });
             const response = await fetch(
                 `https://api.yelp.com/v3/businesses/search?${params}`,
@@ -103,20 +103,24 @@ document.addEventListener("DOMContentLoaded", async function () {
                     },
                 }
             );
+
             const data = await response.json();
+            console.log(data);
 
             restaurantList.innerHTML = "";
             const filteredBusinesses = selectedRating
-                ? data.businesses.filter(business => parseFloat(business.rating) >= parseFloat(selectedRating))
+                ? data.businesses.filter((business) => parseFloat(business.rating) >= parseFloat(selectedRating))
                 : data.businesses;
 
             if (filteredBusinesses.length === 0) {
-                restaurantList.innerHTML = "<p>No restaurants match the selected rating.</p>";
+                restaurantList.innerHTML =
+                    "<p>No restaurants match the selected rating.</p>";
                 return;
             }
 
             filteredBusinesses.forEach((business) => {
                 const restaurantCard = template.content.cloneNode(true);
+                restaurantCard.querySelector("div").id = business.alias;
                 restaurantCard.querySelector(".restaurantImg").src =
                     business.image_url || "default_image.jpg";
                 restaurantCard.querySelector(".restaurantName").textContent =
@@ -148,8 +152,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 
-
-const apiKey = "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
+const apiKey =
+    "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
 
 async function fetchRestaurants() {
     const proxyUrl = "https://cors-anywhere.herokuapp.com/";
@@ -159,8 +163,8 @@ async function fetchRestaurants() {
         const response = await fetch(yelpApiUrl, {
             headers: {
                 Authorization: `Bearer ${apiKey}`,
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json",
+            },
         });
 
         if (!response.ok) {
@@ -182,7 +186,8 @@ async function chooseRandom() {
         alert("No restaurants available. Please try again later.");
         return;
     }
-    const randomRestaurant = restaurants[Math.floor(Math.random() * restaurants.length)];
+    const randomRestaurant =
+        restaurants[Math.floor(Math.random() * restaurants.length)];
     const restaurantId = randomRestaurant.id;
     window.location.href = `restaurant-detail.html?id=${restaurantId}`;
 }
