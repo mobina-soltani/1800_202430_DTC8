@@ -223,6 +223,14 @@ main {
     background-color: #005f8b;
 }
 
+.to-remove {
+    background-color: #dc3545;
+}
+
+.to-remove:hover {
+    background-color: darkred;
+}
+
 .modal {
     display: none;
     position: fixed;
