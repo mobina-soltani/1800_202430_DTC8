@@ -53,18 +53,29 @@
         <main>
             <div class="d-flex flex-column col-4 mx-auto">
                 <h1 id="name-goes-here"></h1>
-                <p id="bio-goes-here">No bio yet.</p>
+
+                <div>
+                    <p id="bio-goes-here">No bio yet.</p>
+                    <button id="edit-bio" class="btn-primary">Edit Bio</button>
+                    <button id="profile-settings" onclick="window.location.href = `setting.html`">Settings</button>
+                </div>
             </div>
             <div
                 class="d-flex flex-column flex-md-row gap-5 col-10 mx-auto justify-content-center"
             >
                 <div class="w-100 w-md-50">
                     <h2>Restaurants</h2>
-                    <div id="restaurant-list" class="d-flex flex-column gap-2"></div>
+                    <div
+                        id="restaurant-list"
+                        class="d-flex flex-column gap-2"
+                    ></div>
                 </div>
                 <div class="w-100 w-md-50">
                     <h2>Reviews</h2>
-                    <div id="review-list" class="d-flex flex-column gap-2"></div>
+                    <div
+                        id="review-list"
+                        class="d-flex flex-column gap-2"
+                    ></div>
                 </div>
             </div>
         </main>
