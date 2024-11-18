@@ -219,7 +219,7 @@ main {
     cursor: pointer;
 }
 
-.detail-button:hover {
+.detail-button:hover, .toggle-restaurant:hover {
     background-color: #005f8b;
 }
 
