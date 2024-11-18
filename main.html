@@ -1,77 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EatMOJI</title>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EatMOJI</title>
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- bootstrap -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+        />
 
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+        <!-- firebase -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
+        />
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+        <!-- other libraries and stylesheet -->
+        <link rel="stylesheet" href="styles/style.css" />
+    </head>
 
-    <!-- other libraries and stylesheet -->
-    <link rel="stylesheet" href="styles/style.css" />
-</head>
+    <body class="min-vh-100">
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+        ></script>
+        <header class="px-5 sticky-top">
+            <nav></nav>
+        </header>
+        <main class="mt-3">
+            <div
+                id="mainButtons"
+                class="d-flex mx-auto justify-content-center col-lg-8 gap-2 gap-md-5 pb-2"
+            >
+                <a onclick="chooseRandom()" class="btn w-25 mx-auto"
+                    >Choose for me!</a
+                >
+                <a href="new-restaurant.html" class="btn w-25 mx-auto"
+                    >Add Restaurant</a
+                >
 
-<body class="min-vh-100">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <header class="px-5 sticky-top">
-        <nav></nav>
-    </header>
-    <main class="mt-3">
-        <div id="mainButtons" class="d-flex flex-column flex-md-row mx-auto justify-content-center gap-5 pb-2">
-            <a onclick="chooseRandom()" class="text-decoration-none rounded-3 px-2 py-1">Choose for me!</a>
-            <a href="new-restaurant.html" class="text-decoration-none rounded-3 px-2 py-1">Add Restaurant</a>
-        </div>
-        <div id="restaurant-list" class="d-flex flex-column gap-3 mx-4 mx-lg-auto col-lg-8"></div>
+                <a href="" class="btn w-25 mx-auto">My List</a>
 
-        <template id="restaurantCardTemplate">
-            <div class="restaurant-card">
-                <img class="restaurantImg" src="" alt="Restaurant Image">
-                <div class="restaurant-info">
-                    <h2 class="restaurantName"></h2>
-                    <p class="tags"></p>
-                    <p class="stars"></p>
-                    <p class="address"></p>
-                    <button class="detail-button">Detail</button>
-                </div>
+                <a onclick="toggleLocation()" class="btn w-25 mx-auto"
+                    >Location: Off</a
+                >
             </div>
-        </template>
+            <div
+                id="restaurant-list"
+                class="d-flex flex-column gap-3 mx-4 mx-lg-auto col-lg-8"
+            ></div>
 
+            <template id="restaurantCardTemplate">
+                <div class="restaurant-card rounded-3">
+                    <div class="d-flex justify-content-center">
+                        <img
+                            class="restaurantImg rounded-start-3"
+                            src=""
+                            alt="Restaurant Image"
+                        />
+                    </div>
+                    <div class="restaurant-info">
+                        <h2 class="restaurantName"></h2>
+                        <p class="tags"></p>
+                        <p class="stars"></p>
+                        <p class="address"></p>
+                        <div class="d-flex flex-row gap-2 mb-2">
+                            <button class="detail-button">Detail</button>
+                            <button class="add-to-favourites btn detail-button">
+                                Add to List
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </main>
+        <footer class="sticky-bottom"></footer>
 
+        <!-- Scripts -->
+        <!-- Load APIs -->
+        <script src="scripts/firebaseAPI_DTC08.js"></script>
+        <!-- <script src="scripts/mapsAPI_DTC08.js"></script> -->
 
-
-
-    </main>
-    <footer class="sticky-bottom"></footer>
-
-    <!-- Scripts -->
-    <!-- Load APIs -->
-    <script src="scripts/firebaseAPI_DTC08.js"></script>
-    <!-- <script src="scripts/mapsAPI_DTC08.js"></script> -->
-
-    <!-- Add Dynamic Elements and Logic -->
-    <script src="scripts/loadSkeleton.js"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/logout.js"></script>
-</body>
-
+        <!-- Add Dynamic Elements and Logic -->
+        <script src="scripts/loadSkeleton.js"></script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/logout.js"></script>
+    </body>
 </html>
