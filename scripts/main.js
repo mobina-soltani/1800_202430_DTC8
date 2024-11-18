@@ -54,44 +54,56 @@ const loadRestaurants = (userID) => {
         });
 };
 
+// add restaurant to user list
 const addRestaurant = async (userAttributes, alias) => {
     userAttributes.update({
-        restaurants: firebase.firestore.FieldValue.arrayUnion(alias)
-    })
+        restaurants: firebase.firestore.FieldValue.arrayUnion(alias),
+    });
 };
 
+// remove restaurant from user list
 const removeRestaurant = async (userAttributes, alias) => {
     userAttributes.update({
-        restaurants: firebase.firestore.FieldValue.arrayRemove(alias)
-    })
+        restaurants: firebase.firestore.FieldValue.arrayRemove(alias),
+    });
 };
 
+// toggle restaurant from user list
 const toggleRestaurant = async (alias) => {
     let user = await firebase.auth().currentUser;
-    let userAttributes = db.collection("users").doc(user.uid)
+    let userAttributes = db.collection("users").doc(user.uid);
     let userDoc = await userAttributes.get();
     let userRestaurants = userDoc.data().restaurants;
-    
-    console.log(userRestaurants)
-    let toggleBtn = document.querySelector(`#${alias}.toggle-restaurant`)
-    
+
+    console.log(userRestaurants);
+    let toggleBtn = document.querySelector(`#${alias}#toggle-restaurant`);
+
     if (userRestaurants.includes(alias)) {
         addRestaurant(alias);
         // toggle button to "remove from list"
-        toggleBtn.textContent = "Remove from List"
-        toggleBtn.classList.remove("toggle-restaurant")
-        toggleBtn.classList.add("to-remove")
+        toggleBtn.textContent = "Remove from List";
+        toggleBtn.classList.remove("toggle-restaurant");
+        toggleBtn.classList.add("to-remove");
     } else {
         removeRestaurant(alias);
         // toggle button to "add to list"
-        toggleBtn.textContent = "Add to List"
-        toggleBtn.classList.remove("to-remove")
-        toggleBtn.classList.add("toggle-restaurant")
+        toggleBtn.textContent = "Add to List";
+        toggleBtn.classList.remove("to-remove");
+        toggleBtn.classList.add("toggle-restaurant");
     }
 
     userDoc = await userAttributes.get();
     userRestaurants = userDoc.data().restaurants;
-    console.log(userRestaurants)
+    console.log(userRestaurants);
+};
+
+const toggleLocation = () => {
+    let locationBtn = document.querySelector("#toggle-location");
+    if (locationBtn.textContent == "Location: Off") {
+        locationBtn.textContent = "Location: On";
+    } else {
+        locationBtn.textContent = "Location: Off";
+    }
 };
 
 const getRandomInt = (max) => {
@@ -147,7 +159,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             const data = await response.json();
 
             restaurantList.innerHTML = "";
-            const filteredBusinesses = selectedRating ? data.businesses.filter((business) => parseFloat(business.rating) >= parseFloat(selectedRating)) : data.businesses;
+            const filteredBusinesses = selectedRating
+                ? data.businesses.filter(
+                      (business) =>
+                          parseFloat(business.rating) >=
+                          parseFloat(selectedRating)
+                  )
+                : data.businesses;
 
             if (filteredBusinesses.length === 0) {
                 restaurantList.innerHTML =
@@ -183,7 +201,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 restaurantCard
                     .querySelector(".toggle-restaurant")
                     .addEventListener("click", () => {
-                        toggleRestaurant(business.alias)
+                        toggleRestaurant(business.alias);
                     });
 
                 restaurantList.appendChild(restaurantCard);
