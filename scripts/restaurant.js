@@ -89,7 +89,7 @@ const toggleRestaurant = async (alias) => {
 // display restaurant reviews
 const getRestaurantReviews = () => {
     let params = new URL(window.location.href);
-    let restaurantID = params.searchParams.get("restaurantID");
+    let restaurantID = params.searchParams.get("id");
 
     db.collection("reviews")
         .where("restaurantID", "==", restaurantID)

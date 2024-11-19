@@ -6,14 +6,8 @@ const reviewID = params.get("userID");
 var stars = document.querySelectorAll(".star");
 
 const displayRestaurantName = (restaurantID) => {
-    db.collection("places")
-        .doc(restaurantID)
-        .get()
-        .then((doc) => {
-            let restaurant = doc.data();
-            document.getElementById("restaurant-name-here").textContent =
-                restaurant.name;
-        });
+    document.getElementById("restaurant-name-here").textContent =
+        localStorage.getItem("restaurantName");
 };
 
 // Iterate through each star element
@@ -64,8 +58,8 @@ const writeReview = () => {
                             review.id
                         ),
                     });
-                
-                window.location.href = `../restaurant.html?restaurantID=${restaurantID}`
+
+                window.location.href = `../restaurant.html?id=${restaurantID}`;
             });
     }
 };
