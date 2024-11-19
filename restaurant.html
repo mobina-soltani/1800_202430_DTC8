@@ -58,10 +58,12 @@
                 <img
                     src="https://picsum.photos/id/1/200/200"
                     class="rounded-3"
+                    id="restaurant-img"
+                    style="max-height: 200px; max-width: 200px;"
                     alt=""
                 />
                 <div class="d-flex flex-column">
-                    <h1 id="restaurantName">restaurant name</h1>
+                    <h1 id="restaurant-name">restaurant name</h1>
                     <p id="tags">some tags</p>
                     <p
                         id="stars"
@@ -72,20 +74,21 @@
                     <div
                         class="mx-auto d-flex gap-2 flex-column flex-md-row align-items-center"
                     >
-                        <span class="bg-warning-subtle rounded-3 px-2 py-1"
-                            >Add to my restaurants</span
+                    <a id="redirect-to-yelp" class="detail-button">See in Yelp</a>
+                        <span class="toggle-restaurant" id="toggle-restaurant"
+                            >Add to List</span
                         >
                         <a
                             href="review.html"
                             id="review-link"
-                            class="text-decoration-none text-black bg-warning-subtle rounded-3 px-2 py-1"
+                            class="detail-button"
                             >Add review</a
                         >
                     </div>
                 </div>
             </div>
             <div>
-                <h2 class="p-2">Reviews</h2>
+                <h2 class="p-2">Reviews from EatMOJI users</h2>
                 <div class="d-flex flex-column gap-2 mx-2" id="review-list"></div>
             </div>
 
