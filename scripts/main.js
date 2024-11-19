@@ -59,6 +59,7 @@ const addRestaurant = async (userAttributes, alias) => {
     userAttributes.update({
         restaurants: firebase.firestore.FieldValue.arrayUnion(alias),
     });
+    console.log(`added ${alias}`)
 };
 
 // remove restaurant from user list
@@ -66,6 +67,7 @@ const removeRestaurant = async (userAttributes, alias) => {
     userAttributes.update({
         restaurants: firebase.firestore.FieldValue.arrayRemove(alias),
     });
+    console.log(`removed ${alias}`)
 };
 
 // toggle restaurant from user list
@@ -75,17 +77,16 @@ const toggleRestaurant = async (alias) => {
     let userDoc = await userAttributes.get();
     let userRestaurants = userDoc.data().restaurants;
 
-    console.log(userRestaurants);
-    let toggleBtn = document.querySelector(`#${alias}#toggle-restaurant`);
+    let toggleBtn = document.querySelector(`#${alias} #toggle-restaurant`);
 
-    if (userRestaurants.includes(alias)) {
-        addRestaurant(alias);
+    if (!userRestaurants.includes(alias)) {
+        addRestaurant(userAttributes, alias);
         // toggle button to "remove from list"
         toggleBtn.textContent = "Remove from List";
         toggleBtn.classList.remove("toggle-restaurant");
         toggleBtn.classList.add("to-remove");
     } else {
-        removeRestaurant(alias);
+        removeRestaurant(userAttributes, alias);
         // toggle button to "add to list"
         toggleBtn.textContent = "Add to List";
         toggleBtn.classList.remove("to-remove");

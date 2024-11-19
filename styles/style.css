@@ -225,6 +225,12 @@ main {
 
 .to-remove {
     background-color: #dc3545;
+    margin-top: 10px;
+    padding: 8px 12px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .to-remove:hover {
