@@ -59,7 +59,7 @@ const addRestaurant = async (userAttributes, alias) => {
     userAttributes.update({
         restaurants: firebase.firestore.FieldValue.arrayUnion(alias),
     });
-    console.log(`added ${alias}`)
+    console.log(`added ${alias}`);
 };
 
 // remove restaurant from user list
@@ -67,7 +67,7 @@ const removeRestaurant = async (userAttributes, alias) => {
     userAttributes.update({
         restaurants: firebase.firestore.FieldValue.arrayRemove(alias),
     });
-    console.log(`removed ${alias}`)
+    console.log(`removed ${alias}`);
 };
 
 // toggle restaurant from user list
@@ -127,8 +127,8 @@ const getCoordinates = async () => {
 
     return {
         latitude: pos.coords.latitude,
-        longitude: pos.coords.longitude
-    }
+        longitude: pos.coords.longitude,
+    };
 };
 
 const getRandomInt = (max) => {
@@ -155,6 +155,21 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
+// from: https://github.com/firebase/firebase-js-sdk/issues/462#issuecomment-425479634
+let userLoaded = false;
+function getCurrentUser() {
+    return new Promise((resolve, reject) => {
+        if (userLoaded) {
+            resolve(firebase.auth().currentUser);
+        }
+        const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+            userLoaded = true;
+            unsubscribe();
+            resolve(user);
+        }, reject);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
     const apiKey =
         "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
@@ -162,6 +177,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     const selectedRating = localStorage.getItem("selectedRating");
     const restaurantList = document.getElementById("restaurant-list");
     const template = document.getElementById("restaurantCardTemplate");
+    
+    let user = await getCurrentUser();
+    let userDoc = await db.collection("users").doc(user.uid).get();
+    let userRestaurants = userDoc.data().restaurants;
 
     if (searchQuery) {
         try {
@@ -228,6 +247,19 @@ document.addEventListener("DOMContentLoaded", async function () {
                     .addEventListener("click", () => {
                         toggleRestaurant(business.alias);
                     });
+                
+                if (userRestaurants.includes(business.alias)) {
+                    restaurantCard.querySelector(
+                        "#toggle-restaurant"
+                    ).textContent = "Remove from List";
+                    restaurantCard
+                        .querySelector("#toggle-restaurant")
+                        .classList.add("to-remove");
+                    restaurantCard
+                        .querySelector("#toggle-restaurant")
+                        .classList.remove("toggle-restaurant");
+                }
+
 
                 restaurantList.appendChild(restaurantCard);
             });
@@ -266,14 +298,15 @@ async function fetchRestaurants() {
 }
 
 async function chooseRandom() {
-    const restaurants = await fetchRestaurants();
+    let user = await getCurrentUser();
+    let userDoc = await db.collection("users").doc(user.uid).get()
+    let restaurants = userDoc.data().restaurants;
 
     if (restaurants.length === 0) {
         alert("No restaurants available. Please try again later.");
         return;
     }
-    const randomRestaurant =
+    const randomRestaurantID =
         restaurants[Math.floor(Math.random() * restaurants.length)];
-    const restaurantAlias = randomRestaurant.alias;
-    window.location.href = `restaurant-detail.html?id=${restaurantAlias}`;
+    window.location.href = `restaurant.html?id=${randomRestaurantID}`;
 }
