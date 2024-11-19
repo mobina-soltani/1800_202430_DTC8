@@ -19,22 +19,22 @@ function populateUserInfo() {
 
 
                     //if the data fields are not empty, then write them in to the form.
-                    if (!userCuisine) {
+                    if (userCuisine) {
                         document.getElementById("cuisineInput").value = userCuisine;
                     }
-                    if (!userCuisine1) {
+                    if (userCuisine1) {
                         document.getElementById("cuisineInput1").value = userCuisine1;
                     }
-                    if (!userCuisine2) {
+                    if (userCuisine2) {
                         document.getElementById("cuisineInput2").value = userCuisine2;
                     }
-                    if (!userAllergy) {
+                    if (userAllergy) {
                         document.getElementById("allergyInput").value = userAllergy;
                     }
-                    if (!userBudget) {
+                    if (userBudget) {
                         document.querySelector(`#price-${userBudget}`).checked = true;
                     }
-                    if (!userDistance) {
+                    if (userDistance) {
                         document.getElementById("distanceInput").value = userDistance;
                     }
                 })
