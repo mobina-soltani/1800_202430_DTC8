@@ -1,4 +1,3 @@
-
 // add restaurant to user list
 const addRestaurant = async (userAttributes, alias) => {
     userAttributes.update({
@@ -80,7 +79,6 @@ const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 };
 
-
 // from: https://github.com/firebase/firebase-js-sdk/issues/462#issuecomment-425479634
 let userLoaded = false;
 function getCurrentUser() {
@@ -95,6 +93,86 @@ function getCurrentUser() {
         }, reject);
     });
 }
+
+const loadUserRestaurants = async () => {
+    const apiKey =
+        "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
+    const selectedRating = localStorage.getItem("selectedRating");
+    const restaurantList = document.getElementById("restaurant-list");
+    const template = document.getElementById("restaurantCardTemplate");
+
+    let user = await getCurrentUser();
+    let userAttributes = db.collection("users").doc(user.uid);
+    console.log("userAttributes set");
+    let userDoc = await userAttributes.get();
+    console.log("userDoc fetched");
+    let userRestaurants = userDoc.data().restaurants;
+
+    if (userRestaurants.length == 0) {
+        document.querySelector(
+            "#restaurant-list"
+        ).innerHTML = `<p>No restaurants in list. Add restaurants to see your list.</p>`;
+    } else {
+        userRestaurants.forEach(async (id) => {
+            // lots of api calls
+            let response = await fetch(
+                `https://api.yelp.com/v3/businesses/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            let business = await response.json();
+            const restaurantCard = template.content.cloneNode(true);
+
+            restaurantCard.querySelector("div").id = business.alias;
+            restaurantCard.querySelector(".restaurantImg").src =
+                business.image_url || "default_image.jpg";
+            restaurantCard.querySelector(".restaurantName").textContent =
+                business.name;
+            restaurantCard.querySelector(".tags").textContent =
+                business.categories.map((cat) => cat.title).join(", ");
+            restaurantCard.querySelector(
+                ".stars"
+            ).textContent = `Rating: ${business.rating} (${business.review_count} reviews)`;
+
+            const address = `${business.location.address1}, ${business.location.city}, ${business.location.state} ${business.location.zip_code}`;
+            restaurantCard.querySelector(".address").textContent = address;
+
+            const detailButton =
+                restaurantCard.querySelector(".detail-button");
+            detailButton.addEventListener("click", () => {
+                // 식당의 ID를 쿼리 파라미터로 전달하여 상세 페이지로 이동
+                window.location.href = `restaurant.html?id=${encodeURIComponent(
+                    business.alias
+                )}`;
+            });
+
+            restaurantCard
+                .querySelector(".toggle-restaurant")
+                .addEventListener("click", () => {
+                    toggleRestaurant(business.alias);
+                });
+
+            if (userRestaurants.includes(business.alias)) {
+                restaurantCard.querySelector(
+                    "#toggle-restaurant"
+                ).textContent = "Remove from List";
+                restaurantCard
+                    .querySelector("#toggle-restaurant")
+                    .classList.add("to-remove");
+                restaurantCard
+                    .querySelector("#toggle-restaurant")
+                    .classList.remove("toggle-restaurant");
+            }
+
+            restaurantList.appendChild(restaurantCard);
+        });
+    }
+};
 
 const loadAllRestaurants = async () => {
     const apiKey =
@@ -195,9 +273,20 @@ const loadAllRestaurants = async () => {
     }
 };
 
-document.addEventListener("DOMContentLoaded", async () => {
-    loadAllRestaurants();
-});
+var isCurrentlyOnAllRestaurants = true;
+const toggleRestaurantLists = () => {
+    let toggleList = document.querySelector("#toggle-list")
+    document.querySelector("#restaurant-list").innerHTML = "";
+    if (isCurrentlyOnAllRestaurants) {
+        loadUserRestaurants();
+        toggleList.textContent = "All"
+        isCurrentlyOnAllRestaurants = false;
+    } else {
+        loadAllRestaurants();
+        toggleList.textContent = "My List"
+        isCurrentlyOnAllRestaurants = true;
+    }
+};
 
 const apiKey =
     "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
@@ -239,3 +328,5 @@ async function chooseRandom() {
         restaurants[Math.floor(Math.random() * restaurants.length)];
     window.location.href = `restaurant.html?id=${randomRestaurantID}`;
 }
+
+loadAllRestaurants();
