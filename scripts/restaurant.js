@@ -32,6 +32,19 @@ const getRestaurantInfo = async () => {
     ).textContent = `${data.rating} ⭐ ${data.review_count}`;
     banner.querySelector("#redirect-to-yelp").href = data.url;
 
+    // check if restaurant in user's list
+    let user = await getCurrentUser();
+    let userDoc = await db.collection("users").doc(user.uid).get();
+    let restaurants = userDoc.data().restaurants;
+
+    let toggleBtn = banner.querySelector("#toggle-restaurant");
+
+    if (restaurants.includes(id)) {
+        toggleBtn.classList.remove("toggle-restaurant");
+        toggleBtn.classList.add("to-remove");
+        toggleBtn.textContent = "Remove from List";
+    }
+
     banner.querySelector("#toggle-restaurant").addEventListener("click",
         () => {toggleRestaurant(id)}
     )
@@ -132,6 +145,21 @@ const getRestaurantReviews = () => {
             });
         });
 };
+
+// from: https://github.com/firebase/firebase-js-sdk/issues/462#issuecomment-425479634
+let userLoaded = false;
+function getCurrentUser() {
+    return new Promise((resolve, reject) => {
+        if (userLoaded) {
+            resolve(firebase.auth().currentUser);
+        }
+        const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+            userLoaded = true;
+            unsubscribe();
+            resolve(user);
+        }, reject);
+    });
+}
 
 getRestaurantInfo();
 getRestaurantReviews();
