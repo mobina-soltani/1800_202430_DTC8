@@ -1,58 +1,3 @@
-const loadRestaurant = (restaurantID) => {
-    db.collection(`places`)
-        .doc(restaurantID)
-        .get()
-        .then((restaurantDoc) => {
-            if (restaurantDoc.exists) {
-                // get template from main
-                let cardTemplate = document.getElementById(
-                    "restaurantCardTemplate"
-                );
-
-                // get restaurant document data
-                var restaurantData = restaurantDoc.data();
-                var name = restaurantData.name;
-                var tags = restaurantData.tags;
-                var stars = restaurantData.stars;
-
-                let newCard = cardTemplate.content.cloneNode(true);
-
-                // modify template
-                newCard.querySelector(".restaurantName").innerHTML = name;
-                newCard.querySelector(
-                    ".stars"
-                ).innerHTML = `<p class="bg-warning-subtle rounded-2 px-1 py-1 mx-1">${
-                    stars ? stars : "unrated"
-                } ⭐</p>`;
-                var tagsBuffer = "";
-                tags.forEach((tag) => {
-                    tagsBuffer += `<span class="bg-warning-subtle rounded-2 px-1 py-1 mx-1"> ${tag} </span>`;
-                });
-                newCard.querySelector(".tags").innerHTML = tagsBuffer;
-                newCard.querySelector("img").src =
-                    "https://picsum.photos/id/1/200/200";
-
-                // add onclick behaviour
-                // newCard.querySelector("div.main").onclick = () => {
-                //     window.location.href = `restaurant.html?restaurantID=${restaurantID}`;
-                // };
-
-                document.getElementById("restaurant-list").appendChild(newCard);
-            }
-        });
-};
-
-// Load restaurant cards
-const loadRestaurants = (userID) => {
-    db.collection(`users`)
-        .doc(userID)
-        .get()
-        .then((user) => {
-            user.data().restaurants.forEach((restaurantID) => {
-                loadRestaurant(restaurantID);
-            });
-        });
-};
 
 // add restaurant to user list
 const addRestaurant = async (userAttributes, alias) => {
@@ -135,25 +80,6 @@ const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 };
 
-// const chooseRandom = () => {
-//     let uid = firebase.auth().currentUser.uid;
-//     db.collection("users")
-//         .doc(uid)
-//         .get()
-//         .then((doc) => {
-//             let restaurants = doc.data().restaurants;
-//             window.location.href = `restaurant.html?restaurantID=${restaurants[getRandomInt(restaurants.length)]
-//                 }`;
-//         });
-// };
-
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        loadRestaurants(user.uid);
-    } else {
-        console.log("No user is logged in.");
-    }
-});
 
 // from: https://github.com/firebase/firebase-js-sdk/issues/462#issuecomment-425479634
 let userLoaded = false;
@@ -170,14 +96,14 @@ function getCurrentUser() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", async function () {
+const loadAllRestaurants = async () => {
     const apiKey =
         "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
     const searchQuery = localStorage.getItem("searchQuery");
     const selectedRating = localStorage.getItem("selectedRating");
     const restaurantList = document.getElementById("restaurant-list");
     const template = document.getElementById("restaurantCardTemplate");
-    
+
     let user = await getCurrentUser();
     let userDoc = await db.collection("users").doc(user.uid).get();
     let userRestaurants = userDoc.data().restaurants;
@@ -247,7 +173,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     .addEventListener("click", () => {
                         toggleRestaurant(business.alias);
                     });
-                
+
                 if (userRestaurants.includes(business.alias)) {
                     restaurantCard.querySelector(
                         "#toggle-restaurant"
@@ -260,7 +186,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                         .classList.remove("toggle-restaurant");
                 }
 
-
                 restaurantList.appendChild(restaurantCard);
             });
         } catch (error) {
@@ -268,6 +193,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             restaurantList.innerHTML = "<p>Failed to load restaurant data.</p>";
         }
     }
+};
+
+document.addEventListener("DOMContentLoaded", async () => {
+    loadAllRestaurants();
 });
 
 const apiKey =
@@ -299,7 +228,7 @@ async function fetchRestaurants() {
 
 async function chooseRandom() {
     let user = await getCurrentUser();
-    let userDoc = await db.collection("users").doc(user.uid).get()
+    let userDoc = await db.collection("users").doc(user.uid).get();
     let restaurants = userDoc.data().restaurants;
 
     if (restaurants.length === 0) {
