@@ -26,6 +26,7 @@ var uiConfig = {
                         Budget: "",
                         Distance: "",
                         friends: [],
+                        restaurants: [],
                         visited: [],
                         reviews: [],
                         otherTags: [],
