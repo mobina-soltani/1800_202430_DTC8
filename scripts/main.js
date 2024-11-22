@@ -63,18 +63,6 @@ const toggleLocation = () => {
     console.log(`lat: ${latitude}, long: ${longitude}`);
 };
 
-// getCurrentPosition in async/await style
-const getCoordinates = async () => {
-    const pos = await new Promise((res, rej) => {
-        navigator.geolocation.getCurrentPosition(res, rej);
-    });
-
-    return {
-        latitude: pos.coords.latitude,
-        longitude: pos.coords.longitude,
-    };
-};
-
 const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 };
