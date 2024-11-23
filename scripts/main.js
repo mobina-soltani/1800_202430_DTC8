@@ -325,3 +325,6 @@ async function chooseRandom() {
 }
 
 loadAllRestaurants();
+
+
+
