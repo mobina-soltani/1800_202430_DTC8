@@ -197,10 +197,10 @@ const loadAllRestaurants = async () => {
             restaurantList.innerHTML = "";
             const filteredBusinesses = selectedRating
                 ? data.businesses.filter(
-                      (business) =>
-                          parseFloat(business.rating) >=
-                          parseFloat(selectedRating)
-                  )
+                    (business) =>
+                        parseFloat(business.rating) >=
+                        parseFloat(selectedRating)
+                )
                 : data.businesses;
 
             if (filteredBusinesses.length === 0) {
@@ -224,6 +224,13 @@ const loadAllRestaurants = async () => {
 
                 const address = `${business.location.address1}, ${business.location.city}, ${business.location.state} ${business.location.zip_code}`;
                 restaurantCard.querySelector(".address").textContent = address;
+                //remove +1 in the number
+                let phoneNumber = business.display_phone;
+                if (phoneNumber.startsWith('+1 ')) {
+                    phoneNumber = phoneNumber.substring(3);
+                }
+                restaurantCard.querySelector(".phone").textContent = phoneNumber;
+
 
                 const detailButton =
                     restaurantCard.querySelector(".detail-button");
