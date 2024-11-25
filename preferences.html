@@ -49,21 +49,38 @@
         <header class="px-5 sticky-top">
             <nav></nav>
         </header>
-
-        <div class="container account-section">
-            <div class="account-header">Preferences Setting</div>
-            <div class="d-flex gap-4">
-                <div class="account-email">
-                    <a href="../main.html">Go to Main page</a>
+        <div class="container col-8">
+            <div class="container account-section">
+                <div class="account-header">Preferences Setting
                 </div>
-                <div class="account-email">
-                    <a href="../index.html">Logout</a>
-                </div>
+                    <div class="d-flex gap-4">
+                        <div class="account-email">
+                            <a class="btn btn-primary" href="../main.html">Go to Main page</a>
+                        </div>
+                        <div class="account-email">
+                            <a class="btn btn-primary" href="../index.html">Logout</a>
+                        </div>
+                    </div>
             </div>
-        </div>
-
-        <div class="container">
             <div class="mb-5">
+                <div class="d-flex justify-content-end">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        ,
+                        onclick="editUserInfo()"
+                    >
+                        Edit
+                    </button>
+                    <span style="width: 10px"></span>
+                    <button
+                        type="button"
+                        class="btn btn-info"
+                        onclick="saveUserInfo()"
+                    >
+                        Save
+                    </button>
+                </div>
                 <form>
                     <fieldset class="mb-3" id="personalcuisine" disabled>
                         <div class="form-group">
@@ -142,7 +159,7 @@
                         </div>
                     </fieldset>
                 </form>
-                <form>
+                <form class="d-none">
                     <fieldset class="mb-3" id="personalAllergy" disabled>
                         <div class="form-group">
                             <label>Allergy</label>
@@ -163,8 +180,8 @@
                                 <input
                                     class="form-check-input price-radio"
                                     type="radio"
-                                    name="1"
-                                    id="price-1"
+                                    name="budget"
+                                    id="1"
                                     checked
                                 />
                                 <label class="form-check-label" for="1">
@@ -175,10 +192,10 @@
                                 <input
                                     class="form-check-input price-radio"
                                     type="radio"
-                                    name="2"
+                                    name="budget"
                                     id="2"
                                 />
-                                <label class="form-check-label" for="22">
+                                <label class="form-check-label" for="2">
                                     💲💲
                                 </label>
                             </div>
@@ -186,8 +203,8 @@
                                 <input
                                     class="form-check-input price-radio"
                                     type="radio"
-                                    name="3"
-                                    id="price-3"
+                                    name="budget"
+                                    id="3"
                                 />
                                 <label class="form-check-label" for="3">
                                     💲💲💲
@@ -196,7 +213,7 @@
                         </div>
                     </fieldset>
                 </form>
-                <form>
+                <form class="d-none">
                     <fieldset class="mb-3" id="personalDistance" disabled>
                         <div class="form-group">
                             <label>Distance (km)</label>
@@ -209,30 +226,12 @@
                         </div>
                     </fieldset>
                 </form>
-                <div class="d-flex justify-content-end mt-5">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        ,
-                        onclick="editUserInfo()"
-                    >
-                        Edit
-                    </button>
-                    <span style="width: 10px"></span>
-                    <button
-                        type="button"
-                        class="btn btn-info"
-                        onclick="saveUserInfo()"
-                    >
-                        Save
-                    </button>
-                </div>
             </div>
+        </div>
 
             <footer class="sticky-bottom"></footer>
             <script src="scripts/firebaseAPI_DTC08.js"></script>
             <script src="scripts/loadSkeleton.js"></script>
             <script src="scripts/preferences.js"></script>
-        </div>
     </body>
 </html>
