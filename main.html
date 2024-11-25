@@ -37,17 +37,17 @@
         <nav></nav>
     </header>
     <main class="mt-3 container-md">
-        <div id="mainButtons" class="d-flex mx-auto justify-content-center col-lg-8 gap-2 gap-md-5 pb-2">
+        <div id="mainButtons" class="d-flex mx-auto justify-content-center col-lg-8 gap-1 gap-md-5 pb-2">
             <a onclick="chooseRandom()" class="btn w-25 mx-auto">Choose for me!</a>
             <button class="btn w-25 mx-auto" id="toggle-list" onclick="toggleRestaurantLists()">My List</button>
         </div>
-        <div id="restaurant-list" class="d-flex flex-column gap-3 mx-4 mx-lg-auto col-lg-8"></div>
+        <div id="restaurant-list" class="card-deck d-flex flex-column gap-3 mx-4 mx-lg-auto col-lg-8"></div>
         <template id="restaurantCardTemplate">
-            <div class="restaurant-card rounded-3">
-                <div class="d-flex justify-content-center">
-                    <img class="restaurantImg rounded-start-3" src="" alt="Restaurant Image" />
+                <div class="restaurant-card rounded-3 h-100 d-flex flex-column flex-sm-row">
+                <div class="h-100 m-sm-2 mx-auto">
+                    <img class="restaurantImg rounded-3 img-fluid" src="" alt="Restaurant Image" />
                 </div>
-                <div class="restaurant-info">
+                <div class="restaurant-info mx-auto">
                     <h2 class="restaurantName"></h2>
                     <p class="tags"></p>
                     <p class="stars"></p>
