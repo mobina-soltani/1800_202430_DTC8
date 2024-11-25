@@ -1,0 +1,56 @@
+<style>
+    /* Ensure filter dropdowns align well with the search bar */
+    #placeSearch .filter-option {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 4px;
+        height: 60px;
+        width: 120px;
+        background-color: #e78f81;
+        border-color: #4b4b4b;
+    }
+
+    /* Optional: Adjust the filter and search spacing if needed */
+    #placeSearch .searchbox,
+    #placeSearch .filter-option {
+        margin-right: 8px;
+    }
+
+    /* Custom style for the profile icon button */
+    .dropdown .btn-secondary {
+        background-color: #e78f81;
+        /* Desired background color */
+        border-color: #4b4b4b;
+        /* Optional: to match the background color */
+    }
+
+    .dropdown .btn-secondary img {
+        background-color: transparent;
+        /* Remove gray background on icon */
+        border-radius: 50%;
+        /* Optional: make the icon circular */
+        padding: 5px;
+        /* Optional: add padding around the icon */
+    }
+</style>
+
+<nav class="navbar navbar-expand-md">
+    <div class="d-flex flex-row align-items-center">
+        <a class="p-2" href="../main.html">
+            <img src="/icon/eatmoji_icon.svg" alt="Logo" />
+        </a>
+        <p class="h2 p-2 d-none d-md-block">EatMOJI</p>
+    </div>
+    <div class="dropdown d-none d-md-block mx-auto">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./icon/human.png" alt="" />
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="../profile.html">Profile</a></li>
+            <li><a class="dropdown-item" href="../setting.html">Settings</a></li>
+            <li>
+                <a class="dropdown-item" onclick="logout" href="../index.html">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

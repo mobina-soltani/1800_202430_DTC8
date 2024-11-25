@@ -173,6 +173,8 @@ const loadAllRestaurants = async () => {
     let user = await getCurrentUser();
     let userDoc = await db.collection("users").doc(user.uid).get();
     let userRestaurants = userDoc.data().restaurants;
+    let userPreferences = userDoc.data().preferences;
+
 
     if (searchQuery) {
         try {
