@@ -49,7 +49,7 @@ const getRestaurantInfo = async () => {
         () => {toggleRestaurant(id)}
     )
 
-    banner.querySelector("#review-link").href = `review.html?restaurantID=${id}`
+    banner.querySelector("#review-link").href = `review.html?restaurantID=${id}&restaurantName=${data.name}`
 
     // send name to localStorage to save api call
     localStorage.setItem("restaurantName", data.name)

@@ -1,5 +1,6 @@
 const params = new URL(window.location.href).searchParams;
 const restaurantID = params.get("restaurantID");
+const restaurantName = params.get("restaurantName");
 const reviewID = params.get("userID");
 
 // Select all elements with the class name "star" and store them in the "stars" variable
@@ -45,6 +46,7 @@ const writeReview = () => {
         db.collection("reviews")
             .add({
                 restaurantID: restaurantID,
+                restaurantName: restaurantName,
                 reviewerID: uid,
                 stars: rating,
                 description: description,
