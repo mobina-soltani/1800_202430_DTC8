@@ -71,6 +71,10 @@ const loadUserReviews = async (userID) => {
             deleteReview(reviewID);
         })
 
+        card.querySelector("#see-review").addEventListener("click", () => {
+            window.location.href = `./restaurant.html?id=${reviewInfo.restaurantID}`
+        })
+
         reviewList.appendChild(card)
     });
 };
