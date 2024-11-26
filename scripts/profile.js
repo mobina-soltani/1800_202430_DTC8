@@ -61,18 +61,24 @@ const loadUserReviews = async (userID) => {
     reviewIDs.forEach(async (reviewID) => {
         let reviewDoc = await db.collection("reviews").doc(reviewID).get()
         let reviewInfo = reviewDoc.data()
+        console.log(reviewInfo)
         let card = template.content.cloneNode(true);
 
         card.querySelector(".restaurant-name").textContent = `${reviewInfo.restaurantName} (${reviewInfo.stars} ⭐)`
         card.querySelector(".description").textContent = reviewInfo.description 
 
         card.querySelector("#remove-review").addEventListener("click", () => {
-            card.className = "";
+            card.className = "d-none";
             deleteReview(reviewID);
         })
 
         card.querySelector("#see-review").addEventListener("click", () => {
             window.location.href = `./restaurant.html?id=${reviewInfo.restaurantID}`
+        })
+        
+        card.querySelector("#edit-review").addEventListener("click", () => {
+            localStorage.setItem("reviewID", reviewID)
+            window.location.href = `./review.html?restaurantID=${reviewInfo.restaurantID}&restaurantName=${encodeURIComponent(reviewInfo.restaurantName)}`
         })
 
         reviewList.appendChild(card)
@@ -81,10 +87,10 @@ const loadUserReviews = async (userID) => {
 
 const deleteReview = async (reviewID) => {
     try {
-        await db.collections("reviews").doc(reviewID).delete()
+        await db.collection("reviews").doc(reviewID).delete()
         console.log(`${reviewID} deleted!`);
     } catch(e) {
-        console.log(error);
+        console.log(e);
     }
 }
 
