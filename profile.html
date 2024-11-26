@@ -96,15 +96,23 @@
         <template id="restaurant-card">
             <div class="rounded-3 p-1">
                 <h3 class="restaurant-name"></h3>
+                <p class="restaurant-rating"></p>
                 <p class="tags"></p>
+                <button class="btn btn-primary">Go</button>
             </div>
         </template>
 
         <template id="review-card">
             <div class="rounded-3 p-1">
                 <h3 class="restaurant-name"></h3>
-                <p class="number-of-stars"></p>
                 <p class="description"></p>
+                <div class="buttons d-flex justify-content-between">
+                    <button id="remove-review" class="btn btn-danger">Delete</button>
+                    <div class="cru">
+                        <button id="see-review" class="btn btn-primary">More...</button>
+                        <button id="edit-review" class="btn btn-primary">Edit</button>
+                    </div>
+                </div>
             </div>
         </template>
 
