@@ -1,7 +1,7 @@
 const params = new URL(window.location.href).searchParams;
 const restaurantID = params.get("restaurantID");
 const restaurantName = params.get("restaurantName");
-const reviewID = params.get("userID");
+const reviewID = localStorage.getItem("reviewID");
 
 // Select all elements with the class name "star" and store them in the "stars" variable
 var stars = document.querySelectorAll(".star");
@@ -26,7 +26,7 @@ stars.forEach((star, index) => {
     });
 });
 
-const writeReview = () => {
+const writeReview = async () => {
     let rating = 0;
     stars.forEach((star) => {
         // Check if the text content of the current 'star' element is equal to the string 'star'
@@ -41,6 +41,12 @@ const writeReview = () => {
 
     if (reviewID) {
         // for editing in the future
+        let reviewDoc = db.collection("reviews").doc(reviewID);
+        await reviewDoc.update({
+            stars: rating,
+            description: description,
+        });
+        localStorage.removeItem("reviewID");
     } else {
         console.log(rating, restaurantID, uid);
         db.collection("reviews")
@@ -60,10 +66,10 @@ const writeReview = () => {
                             review.id
                         ),
                     });
-
-                window.location.href = `../restaurant.html?id=${restaurantID}`;
             });
     }
+
+    window.location.href = `../restaurant.html?id=${restaurantID}`;
 };
 
 const clearFields = () => {
@@ -76,4 +82,20 @@ const clearFields = () => {
     }
 };
 
+const loadReview = async () => {
+    if (reviewID) {
+        console.log(reviewID);
+        let reviewDoc = await db.collection("reviews").doc(reviewID).get();
+        let reviewInfo = reviewDoc.data();
+        document.querySelector("#description").value = reviewInfo.description;
+
+        let stars = document.querySelectorAll(".card-body>.star");
+        console.log(stars);
+        for (let i = 0; i < reviewInfo.stars; i++) {
+            stars[i].textContent = "star";
+        }
+    }
+};
+
+loadReview();
 displayRestaurantName(restaurantID);
