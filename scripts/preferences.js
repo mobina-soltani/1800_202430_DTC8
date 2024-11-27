@@ -13,10 +13,7 @@ function populateUserInfo() {
                     let userCuisine = userDoc.data().preferences.pref1;
                     let userCuisine1 = userDoc.data().preferences.pref2;
                     let userCuisine2 = userDoc.data().preferences.pref3;
-                    let userAllergy = userDoc.data().Allergy;
-                    let userBudget = userDoc.data().Budget;
-                    let userDistance = userDoc.data().Distance;
-
+                    let userBudget = userDoc.data().preferences.budget;
 
                     //if the data fields are not empty, then write them in to the form.
                     if (userCuisine) {
@@ -28,14 +25,8 @@ function populateUserInfo() {
                     if (userCuisine2) {
                         document.getElementById("cuisineInput2").value = userCuisine2;
                     }
-                    if (userAllergy) {
-                        document.getElementById("allergyInput").value = userAllergy;
-                    }
                     if (userBudget) {
                         document.getElementById(userBudget).checked = true;
-                    }
-                    if (userDistance) {
-                        document.getElementById("distanceInput").value = userDistance;
                     }
                 })
         } else {
@@ -53,9 +44,7 @@ function editUserInfo() {
     document.getElementById('personalcuisine').disabled = false;
     document.getElementById('personalcuisine1').disabled = false;
     document.getElementById('personalcuisine2').disabled = false;
-    document.getElementById('personalAllergy').disabled = false;
     document.getElementById('personalBudget').disabled = false;
-    document.getElementById('personalDistance').disabled = false;
 }
 
 
@@ -65,17 +54,13 @@ function saveUserInfo() {
     userCuisine = document.getElementById('cuisineInput').value;
     userCuisine1 = document.getElementById('cuisineInput1').value;
     userCuisine2 = document.getElementById('cuisineInput2').value;
-    userAllergy = document.getElementById('allergyInput').value;
     userBudget = parseInt(document.querySelector('input[name=budget]:checked').id);
-    userDistance = parseInt(document.getElementById('distanceInput'));
 
     currentUser.update({
         "preferences.pref1": userCuisine,
         "preferences.pref2": userCuisine1,
         "preferences.pref3": userCuisine2,
-        Allergy: userAllergy,
-        Budget: userBudget,
-        Distance: userDistance
+        "preferences.budget": userBudget,
     })
         .then(() => {
             console.log("Document successfully updated!");
@@ -84,7 +69,5 @@ function saveUserInfo() {
     document.getElementById('personalcuisine').disabled = true;
     document.getElementById('personalcuisine1').disabled = true;
     document.getElementById('personalcuisine2').disabled = true;
-    document.getElementById('personalAllergy').disabled = true;
     document.getElementById('personalBudget').disabled = true;
-    document.getElementById('personalDistance').disabled = true;
 }
