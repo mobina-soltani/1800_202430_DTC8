@@ -46,7 +46,7 @@ const toggleRestaurant = async (alias) => {
 var latitude = 49.2577062;
 var longitude = -123.2063043;
 
-// we should put this in preferences
+// DEPRECATED: not needed
 const toggleLocation = () => {
     let locationBtn = document.querySelector("#toggle-location");
 
@@ -130,8 +130,7 @@ const loadUserRestaurants = async () => {
             const address = `${business.location.address1}, ${business.location.city}, ${business.location.state} ${business.location.zip_code}`;
             restaurantCard.querySelector(".address").textContent = address;
 
-            const detailButton =
-                restaurantCard.querySelector(".detail-button");
+            const detailButton = restaurantCard.querySelector(".detail-button");
             detailButton.addEventListener("click", () => {
                 // 식당의 ID를 쿼리 파라미터로 전달하여 상세 페이지로 이동
                 window.location.href = `restaurant.html?id=${encodeURIComponent(
@@ -146,9 +145,8 @@ const loadUserRestaurants = async () => {
                 });
 
             if (userRestaurants.includes(business.alias)) {
-                restaurantCard.querySelector(
-                    "#toggle-restaurant"
-                ).textContent = "Remove from List";
+                restaurantCard.querySelector("#toggle-restaurant").textContent =
+                    "Remove from List";
                 restaurantCard
                     .querySelector("#toggle-restaurant")
                     .classList.add("to-remove");
@@ -162,6 +160,7 @@ const loadUserRestaurants = async () => {
     }
 };
 
+// load all restaurants in searchQuery
 const loadAllRestaurants = async () => {
     const apiKey =
         "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
@@ -175,6 +174,20 @@ const loadAllRestaurants = async () => {
     let userRestaurants = userDoc.data().restaurants;
     let userPreferences = userDoc.data().preferences;
 
+    // add each cuisine preference to categories
+    let categoryPreferences = ["restaurants"];
+    for (let pref of ["pref1", "pref2", "pref3"]) {
+        if (userPreferences[pref]) {
+            categoryPreferences.push(userPreferences[pref]);
+        }
+    }
+
+    // add price preference; take note of start and stop
+    let price = [];
+    for (let i = 1; i <= userPreferences.budget; i++) {
+        console.log(i)
+        price.push(i)
+    }
 
     if (searchQuery) {
         try {
@@ -182,8 +195,10 @@ const loadAllRestaurants = async () => {
                 location: "Vancouver, BC",
                 term: encodeURIComponent(searchQuery),
                 limit: 20,
-                categories: "restaurants",
+                price: price,
+                categories: categoryPreferences
             });
+            console.log(params)
             const response = await fetch(
                 `https://api.yelp.com/v3/businesses/search?${params}`,
                 {
@@ -199,10 +214,10 @@ const loadAllRestaurants = async () => {
             restaurantList.innerHTML = "";
             const filteredBusinesses = selectedRating
                 ? data.businesses.filter(
-                    (business) =>
-                        parseFloat(business.rating) >=
-                        parseFloat(selectedRating)
-                )
+                      (business) =>
+                          parseFloat(business.rating) >=
+                          parseFloat(selectedRating)
+                  )
                 : data.businesses;
 
             if (filteredBusinesses.length === 0) {
@@ -228,11 +243,11 @@ const loadAllRestaurants = async () => {
                 restaurantCard.querySelector(".address").textContent = address;
                 //remove +1 in the number
                 let phoneNumber = business.display_phone;
-                if (phoneNumber.startsWith('+1 ')) {
+                if (phoneNumber.startsWith("+1 ")) {
                     phoneNumber = phoneNumber.substring(3);
                 }
-                restaurantCard.querySelector(".phone").textContent = phoneNumber;
-
+                restaurantCard.querySelector(".phone").textContent =
+                    phoneNumber;
 
                 const detailButton =
                     restaurantCard.querySelector(".detail-button");
@@ -270,48 +285,23 @@ const loadAllRestaurants = async () => {
     }
 };
 
+// toggle between all restaurants and user's restaurants
 var isCurrentlyOnAllRestaurants = true;
 const toggleRestaurantLists = () => {
-    let toggleList = document.querySelector("#toggle-list")
+    let toggleList = document.querySelector("#toggle-list");
     document.querySelector("#restaurant-list").innerHTML = "";
     if (isCurrentlyOnAllRestaurants) {
         loadUserRestaurants();
-        toggleList.textContent = "All"
+        toggleList.textContent = "All";
         isCurrentlyOnAllRestaurants = false;
     } else {
         loadAllRestaurants();
-        toggleList.textContent = "My List"
+        toggleList.textContent = "My List";
         isCurrentlyOnAllRestaurants = true;
     }
 };
 
-const apiKey =
-    "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
-
-async function fetchRestaurants() {
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    const yelpApiUrl = `${proxyUrl}https://api.yelp.com/v3/businesses/search?location=San+Francisco&categories=restaurants&limit=20`;
-
-    try {
-        const response = await fetch(yelpApiUrl, {
-            headers: {
-                Authorization: `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch restaurants from Yelp API.");
-        }
-
-        const data = await response.json();
-        return data.businesses;
-    } catch (error) {
-        console.error("Error fetching restaurants:", error);
-        return [];
-    }
-}
-
+// choose a random restaurant
 async function chooseRandom() {
     let user = await getCurrentUser();
     let userDoc = await db.collection("users").doc(user.uid).get();
@@ -327,6 +317,3 @@ async function chooseRandom() {
 }
 
 loadAllRestaurants();
-
-
-
