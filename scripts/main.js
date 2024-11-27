@@ -183,10 +183,9 @@ const loadAllRestaurants = async () => {
     }
 
     // add price preference; take note of start and stop
-    let price = [];
+    let price = "";
     for (let i = 1; i <= userPreferences.budget; i++) {
-        console.log(i)
-        price.push(i)
+        price += `&price=${i}`
     }
 
     if (searchQuery) {
@@ -195,12 +194,10 @@ const loadAllRestaurants = async () => {
                 location: "Vancouver, BC",
                 term: encodeURIComponent(searchQuery),
                 limit: 20,
-                price: price,
                 categories: categoryPreferences
             });
-            console.log(params)
             const response = await fetch(
-                `https://api.yelp.com/v3/businesses/search?${params}`,
+                `https://api.yelp.com/v3/businesses/search?${params}${price}`,
                 {
                     headers: {
                         Authorization: `Bearer ${apiKey}`,
