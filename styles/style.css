@@ -69,7 +69,8 @@ nav div a {
 
 #restaurant-list>div:hover,
 #review-list>div:hover {
-    background-color: #198754;
+    background-color: rgb(70, 110, 125);
+    color: #e0e0e0;
 }
 
 .account-section {

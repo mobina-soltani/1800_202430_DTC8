@@ -24,9 +24,10 @@
 
     <link rel="stylesheet" href="styles/style.css" />
     <style>
+
         /* Maintain consistent sizing for account cards */
         .account-card {
-            min-height: 180px;
+            height: 100%;
             padding: 20px;
             background-color: #ffcfb3;
             border-radius: 10px;
@@ -66,7 +67,7 @@
     <header class="px-5 sticky-top">
         <nav></nav>
     </header>
-
+    <main id="container" style="padding-bottom: 80px; overflow:hidden;">
     <div class="container account-section">
         <div class="account-header">Account Setting</div>
         <div class="d-flex gap-4">
@@ -130,8 +131,8 @@
             </div>
         </div>
     </div>
-
-    <footer class=""></footer>
+</main>
+    <footer></footer>
     <script src="scripts/firebaseAPI_DTC08.js"></script>
     <script src="scripts/loadSkeleton.js"></script>
 </body>

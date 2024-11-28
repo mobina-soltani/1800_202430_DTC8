@@ -32,12 +32,26 @@
         padding: 5px;
         /* Optional: add padding around the icon */
     }
+
+    .responsive-image {
+        width: 100%; /* Takes full width of the container */
+        max-width: 600px; /* Maximum width */
+        height: auto; /* Maintains aspect ratio */
+    }
+
+    @media (max-width: 768px) { /* Adjust for mobile screens */
+        .responsive-image {
+        width: 100px;
+        }
+
+    }
 </style>
 
 <nav class="navbar navbar-expand-md">
     <div class="d-flex flex-row align-items-center">
         <a class="p-2" href="../main.html">
-            <img src="/icon/Logo.png" alt="Logo" height="230px" width="230px"/>
+            <img src="/icon/Logo.png" alt="Logo" height="230px" width="230px"
+            class="responsive-image"/>
         </a>
     </div>
     <form class="d-flex flex-row justify-content-between my-2 my-sm-0 col-sm-8" id="placeSearch">
@@ -67,23 +81,9 @@
                 }
             });
         </script>
-
-        <!-- Filter Dropdowns -->
-        <select class="form-select mx-1 filter-option">
-            <option value="">Rating</option>
-            <option value="4.5">4.5 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="1">All</option>
-        </select>
-        <!-- Rating Buttons -->
-        <!-- <div id="ratingButtons" class="mx-1">
-            <button class="btn btn-primary rating-button" data-rating="4.5">4.5 Stars</button>
-            <button class="btn btn-primary rating-button" data-rating="4">4 Stars</button>
-            <button class="btn btn-primary rating-button" data-rating="1">All</button>
-        </div> -->
     </form>
 
-    <div class="dropdown d-none d-md-block mx-auto">
+    <div class="dropdown d-none d-md-block mx-auto px-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="./icon/human.png" alt="" />
         </button>
