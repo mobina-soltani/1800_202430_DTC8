@@ -1,6 +1,9 @@
-<script src="https://kit.fontawesome.com/760bd490a7.js" crossorigin="anonymous"></script>
+<script
+    src="https://kit.fontawesome.com/760bd490a7.js"
+    crossorigin="anonymous"
+></script>
 <style>
-    i{
+    i {
         color: black;
     }
 </style>
@@ -11,38 +14,37 @@
 </footer>
 <div class="d-flex justify-content-between d-md-block d-md-none">
     <a href="../main.html" id="homeLink">
-        <i class="fa-solid fa-house" style="font-size: 90px;"></i>
+        <i class="fa-solid fa-house" style="font-size: 90px"></i>
     </a>
     <a href="../friends.html" id="friendsLink">
-        <i class="fa-solid fa-users" style="font-size: 90px;"></i>
+        <i class="fa-solid fa-users" style="font-size: 90px"></i>
     </a>
     <a href="../profile.html" id="profileLink">
-        <i class="fa-solid fa-user" style="font-size: 90px;"></i>
+        <i class="fa-solid fa-user" style="font-size: 90px"></i>
     </a>
     <a href="../setting.html" id="settingsLink">
-        <i class="fa-solid fa-gear" style="font-size: 90px;"></i>
+        <i class="fa-solid fa-gear" style="font-size: 90px"></i>
     </a>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    function setActiveLink() {
-
         const currentPage = window.location.pathname;
+        console.log(currentPage);
 
-        if (currentPage === '../main.html') {
-            document.getElementById("homeLink").querySelector('i').style.color = 'white';
-        } else if (currentPage === '../friends.html') {
-            document.getElementById("friendsLink").querySelector('i').style.color = 'white';
-        } else if (currentPage === '../profile.html') {
-            document.getElementById("profileLink").querySelector('i').style.color = 'white';
-        } else if (currentPage === '../setting.html') {
-            document.getElementById("settingsLink").querySelector('i').style.color = 'white';
+        if (currentPage === "/main.html") {
+            document.getElementById("homeLink").querySelector("i").style.color =
+                "white";
+        } else if (currentPage === "/friends.html") {
+            document
+                .getElementById("friendsLink")
+                .querySelector("i").style.color = "white";
+        } else if (currentPage === "/profile.html") {
+            document
+                .getElementById("profileLink")
+                .querySelector("i").style.color = "white";
+        } else if (currentPage === "/setting.html") {
+            document
+                .getElementById("settingsLink")
+                .querySelector("i").style.color = "white";
         }
-    }
-
-    setActiveLink();
-});
-
 </script>
-
