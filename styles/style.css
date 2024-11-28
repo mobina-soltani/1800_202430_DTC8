@@ -27,7 +27,7 @@ header nav form input {
 }
 
 .searchbox {
-    background-color: #ffcfb3;
+    background-color: #fff7f3;
     border-radius: 80px;
     height: 60px;
     flex-grow: 1;
@@ -55,6 +55,11 @@ header nav form input {
 
 #mainButtons>* {
     background-color: #e78f81;
+}
+
+#mainButtons :hover{
+    color: #e0e0e0;
+    background-color: #dc3545;
 }
 
 nav div a {
@@ -275,3 +280,19 @@ main {
     font-weight: bold;
     cursor: pointer;
 }
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+    @media (max-width: 576px) { /* Target mobile sizes */
+        .sticky-mobile-footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 1030; /* Ensure it stays above other elements */
+        }
+    }

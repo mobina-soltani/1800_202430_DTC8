@@ -39,15 +39,17 @@
         height: auto; /* Maintains aspect ratio */
     }
 
-    @media (max-width: 768px) { /* Adjust for mobile screens */
+    @media (max-width: 412px) { /* Adjust for mobile screens */
         .responsive-image {
-        width: 100px;
+        width: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
         }
 
     }
 </style>
 
-<nav class="navbar navbar-expand-md">
+<nav class="navbar navbar-expand-md sticky-top">
     <div class="d-flex flex-row align-items-center">
         <a class="p-2" href="../main.html">
             <img src="/icon/Logo.png" alt="Logo" height="230px" width="230px"
@@ -60,29 +62,7 @@
         <button id="searchSubmit" class="btn btn-outline-primary search-btn align-self-center">
             <i class="bi bi-search"></i>
         </button>
-        <!-- header_after.html -->
-        <script>
-            document.getElementById('searchSubmit').addEventListener('click', function (event) {
-                event.preventDefault();
-                const query = document.getElementById('searchBox').value;
-                if (query) {
-                    localStorage.setItem('searchQuery', query);
-                    window.location.href = '../main.html';
-                }
-            });
-        </script>
-        <script>
-            document.querySelector('.filter-option').addEventListener('change', function () {
-                const selectedRating = this.value;
-                if (selectedRating) {
-                    localStorage.setItem('selectedRating', selectedRating);
-                } else {
-                    localStorage.removeItem('selectedRating');
-                }
-            });
-        </script>
     </form>
-
     <div class="dropdown d-none d-md-block mx-auto px-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="./icon/human.png" alt="" />

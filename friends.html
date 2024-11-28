@@ -39,55 +39,29 @@
 
         <!-- Custom Stylesheet -->
         <link rel="stylesheet" href="styles/style.css" />
+    <style>
+        .card{
+            display: flex;
+        }
+        footer{
+            position: relative;
+        }
+    </style>
+    
     </head>
 
     <body>
-        <!-- Header -->
         <header class="container mt-3">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-                <a class="navbar-brand" href="#">EatMOJI</a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Friends</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Settings</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
         </header>
 
-        <!-- Main Content -->
         <main class="container mt-4">
             <div class="text-center">
                 <h1>Friends List</h1>
                 <p>Here you can view and manage your friends on EatMOJI.</p>
 
-                <!-- Friends List -->
                 <div class="row">
-                    <!-- Friend Card 1 -->
                     <div class="col-md-4">
                         <div class="card mb-3">
-                            <img src="https://via.placeholder.com/100" class="card-img-top" alt="Friend 1 Image" />
                             <div class="card-body">
                                 <h5 class="card-title">Friend 1</h5>
                                 <p class="card-text">Details about Friend 1.</p>
@@ -98,10 +72,8 @@
                         </div>
                     </div>
 
-                    <!-- Friend Card 2 -->
                     <div class="col-md-4">
                         <div class="card mb-3">
-                            <img src="https://via.placeholder.com/100" class="card-img-top" alt="Friend 2 Image" />
                             <div class="card-body">
                                 <h5 class="card-title">Friend 2</h5>
                                 <p class="card-text">Details about Friend 2.</p>
@@ -112,10 +84,8 @@
                         </div>
                     </div>
 
-                    <!-- Friend Card 3 -->
                     <div class="col-md-4">
                         <div class="card mb-3">
-                            <img src="https://via.placeholder.com/100" class="card-img-top" alt="Friend 3 Image" />
                             <div class="card-body">
                                 <h5 class="card-title">Friend 3</h5>
                                 <p class="card-text">Details about Friend 3.</p>
@@ -129,11 +99,9 @@
             </div>
         </main>
 
-        <!-- Footer -->
         <footer>
         </footer>
 
-        <!-- Firebase Scripts -->
         <script src="scripts/firebaseAPI_DTC08.js"></script>
         <script src="scripts/loadSkeleton.js"></script>
     </body>

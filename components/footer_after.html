@@ -1,19 +1,48 @@
+<script src="https://kit.fontawesome.com/760bd490a7.js" crossorigin="anonymous"></script>
+<style>
+    i{
+        color: black;
+    }
+</style>
 <footer class="py-3 mt-4 d-none d-md-block position-relative">
     <p class="text-center text-body-secondary">
         &copy; 2024 All rights reserved.
     </p>
 </footer>
-<footer class="d-flex justify-content-between d-md-block d-md-none position-relative">
-    <a href="../main.html">
-        <img src="/res/home.png" alt="" class="img-fluid" style="width: 100px; height: 100px" />
+<div class="d-flex justify-content-between d-md-block d-md-none">
+    <a href="../main.html" id="homeLink">
+        <i class="fa-solid fa-house" style="font-size: 90px;"></i>
     </a>
-    <a href="../friends.html">
-        <img src="/res/multiple-users-silhouette.png" alt="" class="img-fluid" style="width: 100px; height: 100px" />
+    <a href="../friends.html" id="friendsLink">
+        <i class="fa-solid fa-users" style="font-size: 90px;"></i>
     </a>
-    <a href="../profile.html">
-        <img src="/icon/human.png" alt="" class="img-fluid" style="width: 100px; height: 100px" />
+    <a href="../profile.html" id="profileLink">
+        <i class="fa-solid fa-user" style="font-size: 90px;"></i>
     </a>
-    <a href="../setting.html">
-        <img src="/icon/settings.png" alt="" class="img-fluid" style="width: 100px; height: 100px" />
+    <a href="../setting.html" id="settingsLink">
+        <i class="fa-solid fa-gear" style="font-size: 90px;"></i>
     </a>
-</footer>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    function setActiveLink() {
+
+        const currentPage = window.location.pathname;
+
+        if (currentPage === '../main.html') {
+            document.getElementById("homeLink").querySelector('i').style.color = 'white';
+        } else if (currentPage === '../friends.html') {
+            document.getElementById("friendsLink").querySelector('i').style.color = 'white';
+        } else if (currentPage === '../profile.html') {
+            document.getElementById("profileLink").querySelector('i').style.color = 'white';
+        } else if (currentPage === '../setting.html') {
+            document.getElementById("settingsLink").querySelector('i').style.color = 'white';
+        }
+    }
+
+    setActiveLink();
+});
+
+</script>
+
