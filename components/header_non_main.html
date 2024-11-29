@@ -1,57 +1,29 @@
 <style>
-    /* Ensure filter dropdowns align well with the search bar */
-    #placeSearch .filter-option {
-        padding: 5px;
-        font-size: 16px;
-        border-radius: 4px;
-        height: 60px;
-        width: 120px;
-        background-color: #e78f81;
-        border-color: #4b4b4b;
+
+    .responsive-image {
+        width: 100%; /* Takes full width of the container */
+        max-width: 600px; /* Maximum width */
+        height: auto; /* Maintains aspect ratio */
     }
 
-    /* Optional: Adjust the filter and search spacing if needed */
-    #placeSearch .searchbox,
-    #placeSearch .filter-option {
-        margin-right: 8px;
+    @media (max-width: 412px) {
+        /* Adjust for mobile screens */
+        .responsive-image {
+            width: 100%;
+        }
     }
-
-    /* Custom style for the profile icon button */
-    .dropdown .btn-secondary {
-        background-color: #e78f81;
-        /* Desired background color */
-        border-color: #4b4b4b;
-        /* Optional: to match the background color */
-    }
-
-    .dropdown .btn-secondary img {
-        background-color: transparent;
-        /* Remove gray background on icon */
-        border-radius: 50%;
-        /* Optional: make the icon circular */
-        padding: 5px;
-        /* Optional: add padding around the icon */
-    }
-
-    
 </style>
 
-<nav class="navbar navbar-expand-md d-flex justify-content-between mx-auto w-75 h-15 w-md-100">
+<nav class="navbar navbar-expand-md sticky-top justify-content-center">
     <div class="d-flex flex-row align-items-center">
         <a class="p-2" href="../main.html">
-            <img src="/icon/Logo.png" alt="Logo" width="200px" height="200px" />
+            <img
+                src="/icon/Logo.png"
+                alt="Logo"
+                height="230px"
+                width="230px"
+                class="responsive-image"
+            />
         </a>
-    </div>
-    <div class="dropdown d-none d-md-block mx-auto mx-md-0">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="./icon/human.png" alt="" />
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="../profile.html">Profile</a></li>
-            <li><a class="dropdown-item" href="../setting.html">Settings</a></li>
-            <li>
-                <a class="dropdown-item" onclick="logout" href="../index.html">Logout</a>
-            </li>
-        </ul>
     </div>
 </nav>
