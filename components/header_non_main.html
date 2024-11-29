@@ -14,9 +14,9 @@
     }
 </style>
 
-<nav class="navbar navbar-expand-md sticky-top justify-content-center">
+<nav class="navbar navbar-expand-md sticky-top justify-content-between">
     <div class="d-flex flex-row align-items-center">
-        <a class="p-2" href="../main.html">
+        <a class="p-2 w-50 mx-auto mx-sm-none" href="../main.html">
             <img
                 src="/icon/Logo.png"
                 alt="Logo"
@@ -25,5 +25,17 @@
                 class="responsive-image"
             />
         </a>
+    </div>
+    <div class="dropdown d-none d-md-block mx-auto">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./icon/human.png" alt="" />
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="../profile.html">Profile</a></li>
+            <li><a class="dropdown-item" href="../setting.html">Settings</a></li>
+            <li>
+                <a class="dropdown-item" onclick="logout" href="../index.html">Logout</a>
+            </li>
+        </ul>
     </div>
 </nav>
