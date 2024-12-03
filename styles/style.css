@@ -300,3 +300,21 @@ footer {
         }
     }
 
+    /* Sticky button styles */
+#stickyButton {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #e78f81;
+    color: #000;
+    border: 1;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+}
+
