@@ -4,8 +4,6 @@ const loadUserDisplayName = async (userID) => {
     nameHere.textContent = userDoc.data().name;
 };
 
-const loadUserBio = () => {};
-
 const getRestaurantInfo = async (id) => {
     // get current url
     const apiKey =
@@ -101,7 +99,6 @@ const doAll = async () => {
             console.log(`userID: ${userID}`);
             loadUserDisplayName(userID);
             loadRestaurants(userID);
-            loadUserBio(userID);
             loadUserReviews(userID);
         }
     });
