@@ -193,7 +193,7 @@ const loadAllRestaurants = async () => {
             let params = new URLSearchParams({
                 location: "Vancouver, BC",
                 term: encodeURIComponent(searchQuery),
-                limit: 20,
+                limit: 10,
                 categories: categoryPreferences
             });
             const response = await fetch(
