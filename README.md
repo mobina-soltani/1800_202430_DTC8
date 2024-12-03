@@ -1,15 +1,17 @@
 # 1800_202430_DTC8
-- Hi everyone, I'm James.
-- Hi, my name is YoungBin! I am excited. thank you!
-- Hey I am Mobina!
+
+DTC08 is developing **EatMoJi**, an app that recommends random food places based on preferences and budget.
+Made by James, Youngbin, and Mobina.
 
 ## file structure
+
 ```
  1800-2024-DTC08/
 ├─ index.html
 ├─ main.html
 ├─ login.html
 ├─ skeleton.html
+├─ *.html
 ├─ components/
 │  ├─ header.html
 │  ├─ footer.html
@@ -17,11 +19,14 @@
 │  ├─ *.js
 ├─ styles/
 │  ├─ *.css
+├─ icon/
+├─ res/
 ```
+
 The sub-folders contain:
-- **components**: Reusable HTML components.  
-- **scripts**: All `*.js` files that define logic and user interaction.  
-- **styles**: External stylesheets.
+
+-   **components**: Reusable HTML components.
+-   **scripts**: All `*.js` files that define logic and user interaction.
+-   **styles**: External stylesheets.
 
 `skeleton.html` is a template html for all the pages.
-아니 그러면 모바일 모드에서는 로그아웃 어캐 함? 
