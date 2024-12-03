@@ -296,14 +296,14 @@ footer {
         .sticky-mobile-footer {
             position: sticky;
             bottom: 0;
-            z-index: 999; /* Ensure it stays above other elements */
+            z-index: 1020; /* Ensure it stays above other elements */
         }
     }
 
     /* Sticky button styles */
 #stickyButton {
     position: fixed;
-    bottom: 80px;
+    bottom: 15%;
     right: 20px;
     background-color: #e78f81;
     color: #000;
