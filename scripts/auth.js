@@ -20,7 +20,8 @@ var uiConfig = {
                         preferences: {
                             pref1: "",
                             pref2: "",
-                            pref3: ""
+                            pref3: "",
+                            budget: 1
                         },
                         Allergy: "",
                         Budget: "",
