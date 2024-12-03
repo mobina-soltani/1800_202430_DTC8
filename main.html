@@ -80,6 +80,23 @@
     <script src="scripts/loadSkeleton.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/logout.js"></script>
+    <script>
+        // Function to toggle button visibility on scroll
+        window.addEventListener("scroll", function () {
+            const button = document.getElementById("stickyButton");
+            const scrollPosition = window.scrollY; 
+            const halfwayPoint = document.body.scrollHeight / 14;
+
+            if (scrollPosition >= halfwayPoint) {
+                button.classList.remove("hidden");
+                button.classList.add("visible");
+            } else {
+                button.classList.remove("visible");
+                button.classList.add("hidden");
+                }
+        });
+
+    </script>
 </body>
 
 </html>
