@@ -300,8 +300,13 @@ footer {
         }
     }
 
+.hidden {
+        display: none;
+    }
+
     /* Sticky button styles */
-#stickyButton {
+.visible {
+    display: block;
     position: fixed;
     bottom: 15%;
     right: 20px;
