@@ -29,8 +29,10 @@
     <link rel="stylesheet" href="styles/style.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body class="min-vh-100" style="">
@@ -43,11 +45,12 @@
     <main class="mt-3 container-sm">
         <div id="mainButtons" class="d-flex mx-auto justify-content-center col-lg-8 gap-1 gap-md-5 pb-2">
             <a onclick="chooseRandom()" class="btn mx-auto border-black" style="width: 75%;"><b>Choose for me !</b></a>
-            <button class="btn mx-auto border-black" id="toggle-list" onclick="toggleRestaurantLists()" style="width: 25%;">My List</button>
+            <button class="btn mx-auto border-black" id="toggle-list" onclick="toggleRestaurantLists()"
+                style="width: 25%;">My List</button>
         </div>
         <div id="restaurant-list" class="card-deck d-flex flex-column gap-3 mx-4 mx-lg-auto col-lg-8"></div>
         <template id="restaurantCardTemplate">
-                <div class="restaurant-card rounded-3 h-100 d-flex flex-column flex-sm-row">
+            <div class="restaurant-card rounded-3 h-100 d-flex flex-column flex-sm-row">
                 <div class="h-100 m-sm-2 mx-auto">
                     <img class="restaurantImg rounded-3 img-fluid" src="" alt="Restaurant Image" />
                 </div>
@@ -59,13 +62,13 @@
                     <p class="phone"></p>
                     <div class="d-flex flex-row gap-2 mb-2">
                         <button class="detail-button">Detail</button>
-                        <button id="toggle-restaurant" class="toggle-restaurant">
+                        <button id="toggle-restaurant" onclick="chooseRandom()" class="toggle-restaurant">
                             Add to List
                         </button>
                     </div>
                 </div>
             </div>
-            <button id="stickyButton" class="hidden">Choose for me ! </button>
+            <button id="stickyButton" onclick="chooseRandom()" class="hidden">Choose for me ! </button>
         </template>
     </main>
     <footer class="sticky-mobile-footer">
@@ -84,7 +87,7 @@
         // Function to toggle button visibility on scroll
         window.addEventListener("scroll", function () {
             const button = document.getElementById("stickyButton");
-            const scrollPosition = window.scrollY; 
+            const scrollPosition = window.scrollY;
             const halfwayPoint = document.body.scrollHeight / 14;
 
             if (scrollPosition >= halfwayPoint) {
@@ -93,7 +96,7 @@
             } else {
                 button.classList.remove("visible");
                 button.classList.add("hidden");
-                }
+            }
         });
 
     </script>
