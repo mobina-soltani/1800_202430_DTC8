@@ -318,3 +318,9 @@ footer {
 
 }
 
+/* Hover effect */
+#stickyButton:hover {
+    background-color: #dc3545;
+    transform: scale(1.05);
+    color: #e0e0e0;
+}
