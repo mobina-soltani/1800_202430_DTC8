@@ -9,7 +9,7 @@ const loadSkeleton = () => {
             console.log("logged in.")
             console.log(window.location.href)
             if (window.location.href.endsWith("main.html")) {
-                console.log($("header").load("./components/header_after.html"));
+                console.log($("#main-header").load("./components/header_after.html"));
                 console.log($("footer").load("./components/footer_after.html"));
             } else {
                 console.log($("header").load("./components/header_non_main.html"));
