@@ -49,7 +49,7 @@ const writeReview = async () => {
         localStorage.removeItem("reviewID");
     } else {
         console.log(rating, restaurantID, uid);
-        db.collection("reviews")
+        await db.collection("reviews")
             .add({
                 restaurantID: restaurantID,
                 restaurantName: restaurantName,
