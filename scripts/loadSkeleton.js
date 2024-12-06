@@ -20,7 +20,7 @@ const loadSkeleton = () => {
         } else {
             // No user is signed in.
             console.log("not logged in.")
-            console.log($("header").load("./components/header_before.html"));
+            console.log($("#main-header").load("./components/header_before.html"));
             console.log($("footer").load("./components/footer_before.html"));
         }
     });
