@@ -37,14 +37,17 @@ const loadRestaurants = async (userID) => {
 
     restaurantIDs.forEach(async (restaurantID) => {
         let card = template.content.cloneNode(true);
-        let restaurantInfo = await getRestaurantInfo(restaurantID)
+        let restaurantInfo = await getRestaurantInfo(restaurantID);
 
-        card.querySelector(".restaurant-name").textContent = restaurantInfo.name
-        card.querySelector(".restaurant-rating").textContent = `${restaurantInfo.rating} ⭐`
+        card.querySelector(".restaurant-name").textContent =
+            restaurantInfo.name;
+        card.querySelector(
+            ".restaurant-rating"
+        ).textContent = `${restaurantInfo.rating} ⭐`;
 
         card.querySelector("button").addEventListener("click", () => {
-            window.location.href = `../restaurant.html?id=${restaurantID}`
-        })
+            window.location.href = `../restaurant.html?id=${restaurantID}`;
+        });
 
         restaurantList.appendChild(card);
     });
@@ -57,40 +60,47 @@ const loadUserReviews = async (userID) => {
     let reviewList = document.getElementById("review-list");
 
     reviewIDs.forEach(async (reviewID) => {
-        let reviewDoc = await db.collection("reviews").doc(reviewID).get()
-        let reviewInfo = reviewDoc.data()
-        console.log(reviewInfo)
+        let reviewDoc = await db.collection("reviews").doc(reviewID).get();
+        let reviewInfo = reviewDoc.data();
         let card = template.content.cloneNode(true);
 
-        card.querySelector(".restaurant-name").textContent = `${reviewInfo.restaurantName} (${reviewInfo.stars} ⭐)`
-        card.querySelector(".description").textContent = reviewInfo.description 
+        card.querySelector("div").id = reviewID;
+        card.querySelector(
+            ".restaurant-name"
+        ).textContent = `${reviewInfo.restaurantName} (${reviewInfo.stars} ⭐)`;
+        card.querySelector(".description").textContent = reviewInfo.description;
 
         card.querySelector("#remove-review").addEventListener("click", () => {
-            card.className = "d-none";
-            deleteReview(reviewID);
-        })
+            deleteReview(reviewID, userID);
+        });
 
         card.querySelector("#see-review").addEventListener("click", () => {
-            window.location.href = `./restaurant.html?id=${reviewInfo.restaurantID}`
-        })
-        
-        card.querySelector("#edit-review").addEventListener("click", () => {
-            localStorage.setItem("reviewID", reviewID)
-            window.location.href = `./review.html?restaurantID=${reviewInfo.restaurantID}&restaurantName=${encodeURIComponent(reviewInfo.restaurantName)}`
-        })
+            window.location.href = `./restaurant.html?id=${reviewInfo.restaurantID}`;
+        });
 
-        reviewList.appendChild(card)
+        card.querySelector("#edit-review").addEventListener("click", () => {
+            localStorage.setItem("reviewID", reviewID);
+            window.location.href = `./review.html?restaurantID=${
+                reviewInfo.restaurantID
+            }&restaurantName=${encodeURIComponent(reviewInfo.restaurantName)}`;
+        });
+
+        reviewList.appendChild(card);
     });
 };
 
-const deleteReview = async (reviewID) => {
+const deleteReview = async (reviewID, userID) => {
     try {
-        await db.collection("reviews").doc(reviewID).delete()
+        document.getElementById(reviewID).className = "d-none"
+        await db.collection("users").doc(userID).update({
+            reviews: firebase.firestore.FieldValue.arrayRemove(reviewID)
+        });
+        await db.collection("reviews").doc(reviewID).delete();
         console.log(`${reviewID} deleted!`);
-    } catch(e) {
+    } catch (e) {
         console.log(e);
     }
-}
+};
 
 const doAll = async () => {
     firebase.auth().onAuthStateChanged((user) => {
