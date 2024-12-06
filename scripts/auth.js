@@ -23,14 +23,9 @@ var uiConfig = {
                             pref3: "",
                             budget: 1
                         },
-                        Allergy: "",
-                        Budget: "",
-                        Distance: "",
                         friends: [],
                         restaurants: [],
-                        visited: [],
                         reviews: [],
-                        otherTags: [],
                         Notification: {
                             Number: ""
                         }
