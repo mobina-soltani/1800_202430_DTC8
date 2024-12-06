@@ -132,7 +132,6 @@ const loadUserRestaurants = async () => {
 
             const detailButton = restaurantCard.querySelector(".detail-button");
             detailButton.addEventListener("click", () => {
-                // 식당의 ID를 쿼리 파라미터로 전달하여 상세 페이지로 이동
                 window.location.href = `restaurant.html?id=${encodeURIComponent(
                     business.alias
                 )}`;
@@ -249,7 +248,6 @@ const loadAllRestaurants = async () => {
                 const detailButton =
                     restaurantCard.querySelector(".detail-button");
                 detailButton.addEventListener("click", () => {
-                    // 식당의 ID를 쿼리 파라미터로 전달하여 상세 페이지로 이동
                     window.location.href = `restaurant.html?id=${encodeURIComponent(
                         business.alias
                     )}`;
