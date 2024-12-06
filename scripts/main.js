@@ -42,31 +42,6 @@ const toggleRestaurant = async (alias) => {
     console.log(userRestaurants);
 };
 
-// vancouver coordinates
-var latitude = 49.2577062;
-var longitude = -123.2063043;
-
-// DEPRECATED: not needed
-const toggleLocation = () => {
-    let locationBtn = document.querySelector("#toggle-location");
-
-    if (locationBtn.textContent == "Location: Off") {
-        locationBtn.textContent = "Location: On";
-        console.log("location now on");
-        // toggle location true in db
-    } else {
-        locationBtn.textContent = "Location: Off";
-        console.log("location now off");
-        // toggle location false in db
-    }
-
-    console.log(`lat: ${latitude}, long: ${longitude}`);
-};
-
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * max);
-};
-
 // from: https://github.com/firebase/firebase-js-sdk/issues/462#issuecomment-425479634
 let userLoaded = false;
 function getCurrentUser() {
@@ -84,7 +59,7 @@ function getCurrentUser() {
 
 const loadUserRestaurants = async () => {
     const apiKey =
-        "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
+        "RSacZdaVeYCXoSOfRPi7RIBne7pwqr4_3jnrPg3TVmZ-K_ZoWLrYRQx52JbNrZNPcS_dJnfYllBP41NrCHEp2kEdOUmDdzLGuu_sHh-T1Dk0kVDzNFxAZmFZRH5OZ3Yx";
     const selectedRating = localStorage.getItem("selectedRating");
     const restaurantList = document.getElementById("restaurant-list");
     const template = document.getElementById("restaurantCardTemplate");
@@ -163,7 +138,7 @@ const loadUserRestaurants = async () => {
 // load all restaurants in searchQuery
 const loadAllRestaurants = async () => {
     const apiKey =
-        "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
+        "RSacZdaVeYCXoSOfRPi7RIBne7pwqr4_3jnrPg3TVmZ-K_ZoWLrYRQx52JbNrZNPcS_dJnfYllBP41NrCHEp2kEdOUmDdzLGuu_sHh-T1Dk0kVDzNFxAZmFZRH5OZ3Yx";
     const searchQuery = localStorage.getItem("searchQuery");
     const selectedRating = localStorage.getItem("selectedRating");
     const restaurantList = document.getElementById("restaurant-list");
@@ -185,7 +160,7 @@ const loadAllRestaurants = async () => {
     // add price preference; take note of start and stop
     let price = "";
     for (let i = 1; i <= userPreferences.budget; i++) {
-        price += `&price=${i}`
+        price += `&price=${i}`;
     }
 
     if (searchQuery) {
@@ -194,7 +169,7 @@ const loadAllRestaurants = async () => {
                 location: "Vancouver, BC",
                 term: encodeURIComponent(searchQuery),
                 limit: 10,
-                categories: categoryPreferences
+                categories: categoryPreferences,
             });
             const response = await fetch(
                 `https://api.yelp.com/v3/businesses/search?${params}${price}`,

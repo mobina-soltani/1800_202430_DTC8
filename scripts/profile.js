@@ -7,7 +7,7 @@ const loadUserDisplayName = async (userID) => {
 const getRestaurantInfo = async (id) => {
     // get current url
     const apiKey =
-        "wu6Nl6r_DN60K_OUcqqQqZ46STMVDHJOqWsmTMLBUN0BO4p5hjxro8ragYxkK1vdhwxFzkOGiG8_-DjZ4k3sd0umkkUPyln6CaSmm28jb1aYtMUINogpYCWFoKQzZ3Yx";
+        "RSacZdaVeYCXoSOfRPi7RIBne7pwqr4_3jnrPg3TVmZ-K_ZoWLrYRQx52JbNrZNPcS_dJnfYllBP41NrCHEp2kEdOUmDdzLGuu_sHh-T1Dk0kVDzNFxAZmFZRH5OZ3Yx";
 
     var data;
     try {
